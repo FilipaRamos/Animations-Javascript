@@ -682,9 +682,6 @@
 
 </NODES>
 
-
-<SCENE>
-
 <!-- informacao de animacao -->
 <animations>
 <!-- pode não existir qualquer nó “animation” se a cena não tiver
@@ -698,8 +695,6 @@ animações -->
  <animation id=”ss” span=”ff” type=”circular” center="ff ff ff"
 radius="ff" startang="ff" rotang="ff" />
 </animations>
-
-</SCENE>
 
 
 </SCENE>

@@ -666,6 +666,62 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
   }
 };
 
+/*
+ * Method that reads the animations
+ * @constructor
+ */
+MySceneGraph.prototype.parseAnimations = function(rootElement){
+
+	var animations = rootElement.getElementsByTagName('animations');
+
+	if (animations == null)
+		return "the scene has no animations.";
+
+	if (animations.length != 1)
+		return "zero or more animations element found.";
+
+	var animationList = animations[0].getElementsByTagName('animation');
+
+	if (animationList.length == 0)
+		return "no animations found.";
+
+	var n_linear = 0;
+
+	for(var i = 0; i < animationList.length; i++){
+		var id = this.reader.getString(animationList[i], 'id');
+
+		var span = this.reader.getFloat(animationList[i], 'span');
+
+		var type = this.reader.getString(animationList[i], 'type');
+
+		if(type == 'linear'){ // linear animations
+			var controlpoint = animations[0].getElementsByTagName('controlpoint');
+			
+			var x = this.reader.getFloat(controlpoint[n_linear], 'xx');
+			var y = this.reader.getFloat(controlpoint[n_linear], 'yy');
+			var z = this.reader.getFloat(controlpoint[n_linear], 'zz');
+
+			var id = new LinearAnimation(this.scene, id,  ,span, );
+
+			var n_linear++;
+		}
+
+		else if(type == 'circular'){
+
+			var center = this.reader.getFloat(animationList[i], 'center');
+
+			var radius = this.reader.getFloat(animationList[i], 'radius');
+
+			var startang = this.reader.getFloat(animationList[i], 'startang');
+
+			var rotang = this.reader.getFloat(animationList[i], 'rotang');
+
+			var id = new CircularAnimation(this.scene, id, center, radius);
+		}
+
+	}
+
+};
 
 /*
  * Callback to be executed on any read error
