@@ -701,12 +701,12 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			var y = this.reader.getFloat(controlpoint[n_linear], 'yy');
 			var z = this.reader.getFloat(controlpoint[n_linear], 'zz');
 
-			var id = new LinearAnimation(this.scene, id,  ,span, );
+			//var id = new LinearAnimation(this.scene, id,  ,span, );
 
 			var n_linear++;
 		}
 
-		else if(type == 'circular'){
+		else if(type == 'circular'){ // circular animations
 
 			var center = this.reader.getFloat(animationList[i], 'center');
 
@@ -716,7 +716,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 			var rotang = this.reader.getFloat(animationList[i], 'rotang');
 
-			var id = new CircularAnimation(this.scene, id, center, radius);
+			//var id = new CircularAnimation(this.scene, id, center, radius);
 		}
 
 	}
