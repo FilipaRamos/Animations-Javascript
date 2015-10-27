@@ -42,9 +42,8 @@ XMLscene.prototype.init = function (application) {
 
 	
     //this.cyl = new MyCylinder(this,1,0.5,0,9,50);
-    this.tri = new MyTriangle(this,-0.5,-0.5,0,0.5,-0.5,0,0,0.5,0);
+    //this.tri = new MyTriangle(this,-0.5,-0.5,0,0.5,-0.5,0,0,0.5,0);
     //this.spe = new MySphere(this, 0.5,50,50);
-    this.di = new MyDiamond(this,6);
 
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
@@ -63,7 +62,7 @@ XMLscene.prototype.init = function (application) {
 XMLscene.prototype.initLights = function () {
 
     this.shader.bind();
- 	 this.shader.unbind();
+    this.shader.unbind();
 };
 
 /**
@@ -148,7 +147,7 @@ XMLscene.prototype.display = function () {
 	// it is important that things depending on the proper loading of the graph
 	// only get executed after the graph has loaded correctly.
 	// This is one possible way to do it
-		/*
+		
 	
 	if (this.graph.loadedOk)
 	{
@@ -172,26 +171,13 @@ XMLscene.prototype.display = function () {
 	this.displayNode(this.tree.root);
 	//this.cyl.display();
 
-
 	
+	
+	
+	
+
+	};	
     this.shader.unbind();
-	};
-		*/
-
-		for(var i= 0; i< this.lights.length ; i++){
-
-			if(this.onOff[i]){
-				this.lights[i].enable();
-			}else 
-				this.lights[i].disable();
-			this.lights[i].update();
-		}
-
-		// Draw axis
-		if(this.axis.length != 0)
-			this.axis.display();
-		
-		this.di.display();
 };
 
 /**
