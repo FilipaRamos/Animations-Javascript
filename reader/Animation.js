@@ -1,9 +1,9 @@
-function Animation(scene, id, time, velocity){
+function Animation(scene, id, time){
 
  	CGFappearance.call(this,scene);
 
  	this.id = id;
-    this.location = [];
+    this.position = []; //animatino's position
     this.startAng;
     this.rotAng;
     this.time;
