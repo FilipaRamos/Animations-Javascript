@@ -12,11 +12,7 @@ LinearAnimation.prototype = Object.create(CGFappearance.prototype);
 
 LinearAnimation.prototype.constructor = LinearAnimation;
 
-<<<<<<< HEAD
 LinearAnimation.prototype.execute = function(){
-=======
-LinearAnimation.prototype.execute = function()
-{
     var vecCtrlPA = vec3.create();
     var vecCtrlPB = vec3.create();
     var vecDistancia = vec3.create();
@@ -27,10 +23,5 @@ LinearAnimation.prototype.execute = function()
           vecCtrlPB = this.crtlPoints[i+1];
           vecDistancia = vec3.distance(vecCtrlPA, vecCtrlPB);
           
-    }
-
->>>>>>> origin/master
-
-   
-    
+    }  
 }
