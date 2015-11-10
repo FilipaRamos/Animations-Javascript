@@ -689,11 +689,11 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 	for(var i = 0; i < animationList.length; i++){
 		var id = this.reader.getString(animationList[i], 'id');
-
+		console.log("Id = " + id);
 		var span = this.reader.getFloat(animationList[i], 'span');
-
+		console.log("Span = " + span);
 		var type = this.reader.getString(animationList[i], 'type');
-
+		console.log("Type = " + span);
 		if(type == 'linear'){ // linear animations
 			var controlpoint = animations[0].getElementsByTagName('controlpoint');
 			
@@ -703,7 +703,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 			//var id = new LinearAnimation(this.scene, id,  ,span, );
 
-			var n_linear++;
+			n_linear++;
 		}
 
 		else if(type == 'circular'){ // circular animations

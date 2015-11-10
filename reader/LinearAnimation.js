@@ -12,8 +12,7 @@ LinearAnimation.prototype = Object.create(CGFappearance.prototype);
 
 LinearAnimation.prototype.constructor = LinearAnimation;
 
-LinearAnimation.prototype.execute = function()
-{
+LinearAnimation.prototype.execute = function(){
 
    
     
