@@ -181,10 +181,12 @@
 <!-- pode não existir qualquer nó “animation” se a cena não tiver animações -->
 <!-- span é o tempo, em segundos, que a animação deve demorar * -->
 <!-- nesta versão do formato LSX, type pode ter o valor “linear” ou "circular" -->
-    <animation id=”ss” span=”ff” type=”linear”>
-        <controlpoint xx=”ff” yy=”ff” zz=”ff />
+    <animation id="AniLin" span="10" type="linear">
+        <controlpoint xx="0" yy="0" zz="0" />
+        <controlpoint xx="1" yy="0" zz="0" />
+        <controlpoint xx="1" yy="1" zz="0" />
     </animation>
-    <animation id=”ss” span=”ff” type=”circular” center="ff ff ff" radius="ff" startang="ff" rotang="ff" />
+    <animation id="AniRot" span="20" type="circular" center="10 10 10" radius="5" startang="40" rotang="20" />
 </animations>
 
 <!-- INITIALIZE THE LEAVES -->

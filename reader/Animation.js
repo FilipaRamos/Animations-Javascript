@@ -12,3 +12,4 @@ function Animation(scene, id, time){
 Animation.prototype = Object.create(CGFappearance.prototype);
 
 Animation.prototype.constructor = Animation;
+

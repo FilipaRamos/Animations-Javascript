@@ -9,6 +9,8 @@ function XMLscene() {
 XMLscene.prototype = Object.create(CGFscene.prototype);
 XMLscene.prototype.constructor = XMLscene;
 
+var currentTime = 100;
+
 /**
 * Method that initiates the scene
 * @constructor

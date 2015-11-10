@@ -692,36 +692,49 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 	if (animationList.length == 0)
 		return "no animations found.";
 
-	var n_linear = 0;
+	for(var i = 0; i < animationList.length; i++){ // percorrer todas as animações encontradas
 
-	for(var i = 0; i < animationList.length; i++){
 		var id = this.reader.getString(animationList[i], 'id');
 		console.log("Id = " + id);
 		var span = this.reader.getFloat(animationList[i], 'span');
 		console.log("Span = " + span);
 		var type = this.reader.getString(animationList[i], 'type');
-		console.log("Type = " + span);
+		console.log("Type = " + type);
+
 		if(type == 'linear'){ // linear animations
-			var controlpoint = animations[0].getElementsByTagName('controlpoint');
-			
-			var x = this.reader.getFloat(controlpoint[n_linear], 'xx');
-			var y = this.reader.getFloat(controlpoint[n_linear], 'yy');
-			var z = this.reader.getFloat(controlpoint[n_linear], 'zz');
+
+			console.log("LINEAR ANIMATION!!!");
+
+			var controlpointList = animationList[i].getElementsByTagName('controlpoint'); // get the list of controlPoints
+
+			for(var k = 0; k < controlpointList.length; k++){
+
+				var x = this.reader.getFloat(controlpointList[k], 'xx');
+				var y = this.reader.getFloat(controlpointList[k], 'yy');
+				var z = this.reader.getFloat(controlpointList[k], 'zz');
+
+				console.log("point: (" + x + ", " + y + ", " + z + ")");
 
 			//var id = new LinearAnimation(this.scene, id,  ,span, );
-
-			n_linear++;
+			}
 		}
 
 		else if(type == 'circular'){ // circular animations
 
-			var center = this.reader.getFloat(animationList[i], 'center');
+			var args = this.reader.getString(animationList[i], 'center');
+
+			var center = [];
+			center = args.split(/\s+/g);
 
 			var radius = this.reader.getFloat(animationList[i], 'radius');
+
+			console.log("C = " + center + " r = " + radius);
 
 			var startang = this.reader.getFloat(animationList[i], 'startang');
 
 			var rotang = this.reader.getFloat(animationList[i], 'rotang');
+
+			console.log("A0 = " + startang + " Ar = " + rotang);
 
 			//var id = new CircularAnimation(this.scene, id, center, radius);
 		}
