@@ -176,6 +176,17 @@
 
 </MATERIALS>
 
+<!-- informacao de animacao -->
+<animations>
+<!-- pode não existir qualquer nó “animation” se a cena não tiver animações -->
+<!-- span é o tempo, em segundos, que a animação deve demorar * -->
+<!-- nesta versão do formato LSX, type pode ter o valor “linear” ou "circular" -->
+    <animation id=”ss” span=”ff” type=”linear”>
+        <controlpoint xx=”ff” yy=”ff” zz=”ff />
+    </animation>
+    <animation id=”ss” span=”ff” type=”circular” center="ff ff ff" radius="ff" startang="ff" rotang="ff" />
+</animations>
+
 <!-- INITIALIZE THE LEAVES -->
     <!-- next lines define nodes of type leaf; they may be repeated, in any order, as necessary -->
 
@@ -681,21 +692,6 @@
     </NODE>
 
 </NODES>
-
-<!-- informacao de animacao -->
-<animations>
-<!-- pode não existir qualquer nó “animation” se a cena não tiver
-animações -->
-<!-- span é o tempo, em segundos, que a animação deve demorar * -->
-<!-- nesta versão do formato LSX, type pode ter o valor “linear” ou
-"circular" -->
- <animation id=”ss” span=”ff” type=”linear”>
- <controlpoint xx=”ff” yy=”ff” zz=”ff />
- </animation>
- <animation id=”ss” span=”ff” type=”circular” center="ff ff ff"
-radius="ff" startang="ff" rotang="ff" />
-</animations>
-
 
 </SCENE>
  
