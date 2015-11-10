@@ -86,6 +86,13 @@ MySceneGraph.prototype.onXMLReady=function()
 		return;
 	}
 
+	error = this.parseAnimations(rootElement);
+
+	if (error != null) {
+		this.onXMLError(error);
+		return;
+	}
+
 	//console.warn("CENAS!!!!");
 	this.loadedOk=true;
 	
