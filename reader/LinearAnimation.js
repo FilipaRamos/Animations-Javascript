@@ -1,10 +1,10 @@
-function LinearAnimation(scene, animation, crtlPoints, time){
+function LinearAnimation(scene, animation, crtlPoints){
 
  	CGFappearance.call(this,scene);
 
-    this.time = time; //total time in sec
     this.animation = animation;
     this.crtlPoints = crtlPoints; //relative to animation's position 
+    this.aniTime = 0.001;
    
 }
 
@@ -12,16 +12,10 @@ LinearAnimation.prototype = Object.create(CGFappearance.prototype);
 
 LinearAnimation.prototype.constructor = LinearAnimation;
 
-LinearAnimation.prototype.execute = function(){
-    var vecCtrlPA = vec3.create();
-    var vecCtrlPB = vec3.create();
-    var vecDistancia = vec3.create();
+LinearAnimation.prototype.update = function(currentTime){
 
-    for(ver i = 0; i < this.crtlPoints.length; i++){
-        
-          vecCtrlPA = this.crtlPoints[i];
-          vecCtrlPB = this.crtlPoints[i+1];
-          vecDistancia = vec3.distance(vecCtrlPA, vecCtrlPB);
-          
-    }  
+  var distancia_total;
+
+  var update = 
+
 }
