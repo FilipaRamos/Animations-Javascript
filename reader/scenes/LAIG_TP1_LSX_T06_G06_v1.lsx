@@ -213,12 +213,12 @@
         <!--<TRANSLATION x="5" y="0" z="8" />-->
         <DESCENDANTS>
           <DESCENDANT id="diamond" /> 
-           <!-- <DESCENDANT id="mesa" /> 
+           <DESCENDANT id="mesa" /> 
             <DESCENDANT id="paredeDireita" /> 
             <DESCENDANT id="paredeEsquerda" /> 
             <DESCENDANT id="chao" />
             <DESCENDANT id="arvore" />
-            <DESCENDANT id="lareira" /> -->
+            <DESCENDANT id="lareira" /> 
 
         </DESCENDANTS>
 
