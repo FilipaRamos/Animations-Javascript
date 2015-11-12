@@ -34,9 +34,7 @@ LinearAnimation.prototype.calculaDeclive = function(x1, y1, x2, y2){
   var x = x2-x1;
   var y = y2-y1;
 
-  var m = y/x;
-
-  return m;
+  this.m = y/x;
 
 }
 
@@ -44,11 +42,9 @@ LinearAnimation.prototype.calculaDeclive = function(x1, y1, x2, y2){
 * Calcula o b da reta do trajeto
 * @constructor
 */
-LinearAnimation.prototype.calculaB = function(x, m, y){
+LinearAnimation.prototype.calculaB = function(x, y){
 
-  var b = y - m*x;
-
-  return b;
+  this.b = y - this.m*x;
 
 }
 
@@ -56,9 +52,9 @@ LinearAnimation.prototype.calculaB = function(x, m, y){
 * Calcula o y atual
 * @constructor
 */
-LinearAnimation.prototype.calculaY = function(x, m, b){
+LinearAnimation.prototype.calculaY = function(x){
 
-  var y = m*x + b;
+  var y = this.m*x + this.b;
 
   return y;
 
@@ -100,13 +96,13 @@ LinearAnimation.prototype.calculaPontosPassagem = function(){
   var pontos = [];
   var l = 0;
 
-  // o primeiro ponto não é de controlo logo f = 3
+  // o primeiro ponto pertence à primeira reta logo f = 3
   for(var f = 3; f < ctrlPoints.length; f+3){
 
     pontos[l] = ctrlPoints[f];
-    pontos[l+1] = ctrlPoints[f+1];
+    pontos[l+1] = ctrlPoints[f+2];
 
-    l++;
+    l+2;
 
   }
 
@@ -140,9 +136,9 @@ LinearAnimation.prototype.calculaReta = function(pontos, i, x){
 
   this.m = calculaDeclive(pontos[i], pontos[i+1], pontos[i+2], pontos[i+3]);
 
-  this.b = calculaB(pontos[i], this.m, pontos[i+1]);
+  this.b = calculaB(pontos[i], pontos[i+1]);
 
-  var y = calculaY(x, this.m, this.b);
+  var y = calculaY(x);
 
   return y;
 
@@ -168,11 +164,23 @@ LinearAnimation.prototype.update = function(currentTime){
 
   var y;
 
-  if (k != -1){ // significa que estamos num ponto de passagem logo tem de ser calculada nova equação da reta
-    y = calculaReta(k);
+  if(this.i == 0){ // primeiro declive
+
+    this.m = calculaDeclive(this.ctrlPoints[0], this.ctrlPoints[2], this.ctrlPoints[3], this.ctrlPoints[5]);
+    this.b = calculaB(this.ctrlPoints[3], this.ctrlPoints[5]);
+
+    y = calculaY(x);
+
   }
+
   else{
-    y = calculaY(x, this.m, this.b);
+
+    if (k != -1){ // significa que estamos num ponto de passagem logo tem de ser calculada nova equação da reta
+      y = calculaReta(k);
+    }
+    else{
+      y = calculaY(x);
+    }
   }
 
   this.i++;
