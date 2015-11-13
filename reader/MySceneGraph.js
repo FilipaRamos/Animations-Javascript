@@ -568,11 +568,6 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 
 		}
 
-		console.log('ORDER : ' + order);
-		console.log('PARTSU : ' + partsU);
-		console.log('PARTSV : ' + partsV);
-		console.log('controlPoints : ' + controlPoints);
-
 		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints);
 		this.scene.tree.leaves.push(l);	
 
