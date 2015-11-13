@@ -541,7 +541,7 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 		var ctlPoints = leaf[i].getElementsByTagName('controlpoint');
 		var controlPoints = [];
 
-		if (ctlPoints == null)
+		if (ctlPoints === null)
 				return "controlpoint element is missing.";
 
 		if(type == "plane"){
@@ -554,16 +554,14 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 			partsU = this.reader.getInteger(leaf[i], 'partsU', true);
 			partsV = this.reader.getInteger(leaf[i], 'partsV', true);
 				
-			for(var i = 0; i < ctlPoints.length ; i++){
+			for(var j = 0; j < ctlPoints.length ; j++){
 				
 				var coords = [];
-				var x = this.reader.getFloat(ctlPoints[i], 'x');
-				var y = this.reader.getFloat(ctlPoints[i], 'y');
-				var z = this.reader.getFloat(ctlPoints[i], 'z');
+				var x = this.reader.getFloat(ctlPoints[j], 'x');
+				var y = this.reader.getFloat(ctlPoints[j], 'y');
+				var z = this.reader.getFloat(ctlPoints[j], 'z');
 
-				coords.push(x);
-				coords.push(y);
-				coords.push(z);
+				coords.push(x,y,z,1);
 				
 				controlPoints.push(coords);
 			}
@@ -573,15 +571,10 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 		console.log('ORDER : ' + order);
 		console.log('PARTSU : ' + partsU);
 		console.log('PARTSV : ' + partsV);
+		console.log('controlPoints : ' + controlPoints);
 
-		var l = new MyLeave(this.scene,id, type, coordLeaves, parts, 0, 0, 0, []);
-		this.scene.tree.leaves.push(l);
-
-	
-/*
-		var l = new MyLeave(this.scene,id, type, coordLeaves, 0, 0, 0, 0, []);
-		this.scene.tree.leaves.push(l);
-*/		
+		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints);
+		this.scene.tree.leaves.push(l);	
 
 	}
 };

@@ -33,6 +33,7 @@ for(var k=0; k < (this.degree + 1); k++){
        sVertexes = [];     
        console.log('Control textures' + controlvertexes);
 }
+
     var nurbsSurface = new CGFnurbsSurface(this.degree,this.degree,knotU,knotV,controlvertexes);
     getSurfacePoint = function(u, v) {
         return nurbsSurface.getPoint(u, v);
@@ -50,3 +51,5 @@ Patch.prototype.display = function()
     this.surfaces.display();
     this.scene.popMatrix();
 };
+
+Patch.prototype.updateTextCoords = function(s,t){};

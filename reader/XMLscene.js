@@ -173,7 +173,7 @@ XMLscene.prototype.display = function () {
 	this.displayNode(this.tree.root);
 	//this.cyl.display();
 
-	this.plane.display();
+	//this.plane.display();
 	// this.patch.display();
 
 	

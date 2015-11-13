@@ -28,7 +28,6 @@ function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPo
           this.primitive = new MyTriangle(scene, parseFloat(this.coords[0]), parseFloat(this.coords[1]), parseFloat(this.coords[2]), parseFloat(this.coords[3]), parseFloat(this.coords[4]), parseFloat(this.coords[5]), parseFloat(this.coords[6]), parseFloat(this.coords[7]), parseFloat(this.coords[8]));
        
         else if(this.type == "plane") {
-            console.log('ENTROU!!!!!!!!!!!!!!!!!!!!!!!!!!!');
             this.primitive = new Plane(scene, parts);
         }
         else if(this.type == "patch")
