@@ -18,13 +18,6 @@ function Plane(scene, divisions){
 Plane.prototype = Object.create(CGFobject.prototype);
 Plane.prototype.constructor = Plane;
 
-Plane.prototype.makeSurface = function (degree1, degree2, knots1, knots2, controlvertexes, translation) {
-		
-	
-	
-};
-
-
 Plane.prototype.display = function () 
 {
     this.scene.pushMatrix();

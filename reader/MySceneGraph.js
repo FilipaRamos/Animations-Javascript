@@ -515,7 +515,6 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 		
 		var id = this.reader.getString(leaf[i], 'id',true);
 		var type = this.reader.getString(leaf[i], 'type',true);
-		var args = this.reader.getString(leaf[i], 'args',true);
 
 		if(id == null)
 			return "id element null.";
@@ -523,14 +522,56 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 		if(type == null)
 			return "type element null.";
 
-		if(args == null)
-			return "args element null.";
 
-		var coordLeaves = [];
-			coordLeaves = args.split(/\s+/g);  // FEITO COM O DEUS!!! 
+		if(type != "plane" && type != "patch" && type != "vehicle") 
+		{
+		   var  args = this.reader.getString(leaf[i], 'args',true);
 
+			if(args == null)
+					return "args element null.";
+
+			var coordLeaves = [];
+				coordLeaves = args.split(/\s+/g);  // FEITO COM O DEUS!!! 
+		}
+
+		var parts;
+		var order;
+		var partsU;
+		var partsV;
+		var ctlPoints = leaf[i].getElementsByTagName('controlpoint');
+		var controlPoints = [];
+
+		if(type == "plane"){
+			parts = this.reader.getInteger(leaf[i], 'parts',true);
+		}
+
+		if(type == "patch"){
+			order = this.reader.getInteger(leaf[i], 'order', true);
+			partsU = this.reader.getInteger(leaf[i], 'partsU', true);
+			partsV = this.reader.getInteger(leaf[i], 'partsV', true);
+				
+
+			if (ctlPoints == null)
+				return "controlpoint element is missing.";
+	
+			for(var i = 0; i < ctlPoints.length ; i++){
+				
+				var coords = [];
+				var x = this.reader.getFloat(ctlPoints[i], 'x');
+				var y = this.reader.getFloat(ctlPoints[i], 'y');
+				var z = this.reader.getFloat(ctlPoints[i], 'z');
+
+				coords.push(x);
+				coords.push(y);
+				coords.push(z);
+				
+				controlPoints.push(coords);
+			}
+
+		}
 		
-		var l = new MyLeave(this.scene,id, type, coordLeaves);
+	
+		var l = new MyLeave(this.scene,id, type, coordLeaves, parts, order, partsU, partsV, controlPoints);
 		this.scene.tree.leaves.push(l);
 	
 	}

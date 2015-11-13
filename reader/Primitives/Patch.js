@@ -1,8 +1,9 @@
-function Patch(scene, divisions, degree, controlVertex) {
+function Patch(scene, divisionU, divisionV, degree, controlVertex) {
     
     CGFobject.call(this, scene);
     
-    this.divisions = divisions;
+    this.divisionU = divisionU;
+    this.divisionV = divisionV;
     this.degree = degree;
     this.surfaces;
     
@@ -37,7 +38,7 @@ for(var k=0; k < (this.degree + 1); k++){
         return nurbsSurface.getPoint(u, v);
     };
     
-    this.surfaces = new CGFnurbsObject(this.scene,getSurfacePoint,this.divisions,this.divisions);
+    this.surfaces = new CGFnurbsObject(this.scene,getSurfacePoint,this.divisionU,this.divisionV);
 };
 
 Patch.prototype = Object.create(CGFobject.prototype);
