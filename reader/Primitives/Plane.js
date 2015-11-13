@@ -5,7 +5,7 @@ function Plane(scene, divisions){
     this.divisions = divisions;
    	this.surfaces;
  
-    var nurbsSurface = new CGFnurbsSurface(1, 1, [0, 0, 1, 1], [0, 0, 1, 1], [[-0.5, 0.0, 0.5, 1 ], [-0.5, 0.0, -0.5, 1 ], [ 0.5, 0.0,  0.5, 1 ], [ 0.5, 0.0, -0.5, 1 ]]);
+    var nurbsSurface = new CGFnurbsSurface(1, 1, [0, 0, 1, 1], [0, 0, 1, 1], [[[-0.5, 0.0, 0.5, 1 ], [-0.5, 0.0, -0.5, 1 ]], [[ 0.5, 0.0,  0.5, 1 ], [ 0.5, 0.0, -0.5, 1 ]]]);
 	getSurfacePoint = function(u, v) {
 		return nurbsSurface.getPoint(u, v);
 	};
@@ -24,3 +24,5 @@ Plane.prototype.display = function ()
 	this.surfaces.display();
 	this.scene.popMatrix();
 };
+
+Plane.prototype.updateTextCoords = function(s,t){};
