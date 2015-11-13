@@ -24,11 +24,12 @@ function Patch(scene, divisions, degree, controlVertex) {
 var index=0;
 for(var k=0; k < (this.degree + 1); k++){      
    for(var h=0; h < (this.degree + 1); h++){
-            sVertexes[index] = (controlVertex[index]);
+            sVertexes[h] = (controlVertex[index]);
             console.log('Control Vertix: ' + controlVertex[index]);
             index++;
      }
-       controlvertexes[k] = sVertexes[index-1];        
+       controlvertexes.push(sVertexes);   
+       sVertexes = [];     
        console.log('Control textures' + controlvertexes);
 }
     var nurbsSurface = new CGFnurbsSurface(this.degree,this.degree,knotU,knotV,controlvertexes);
