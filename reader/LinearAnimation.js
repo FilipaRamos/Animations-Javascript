@@ -162,24 +162,24 @@ LinearAnimation.prototype.update = function(currentTime){
   // verificação dos pontos de passagem
   var k = verificaPontosPassagem(pontos);
 
-  var y;
+  var z;
 
   if(this.i == 0){ // primeiro declive
 
     this.m = calculaDeclive(this.ctrlPoints[0], this.ctrlPoints[2], this.ctrlPoints[3], this.ctrlPoints[5]);
     this.b = calculaB(this.ctrlPoints[3], this.ctrlPoints[5]);
 
-    y = calculaY(x);
+    z = calculaY(x);
 
   }
 
   else{
 
     if (k != -1){ // significa que estamos num ponto de passagem logo tem de ser calculada nova equação da reta
-      y = calculaReta(k);
+      z = calculaReta(k);
     }
     else{
-      y = calculaY(x);
+      z = calculaY(x);
     }
   }
 
