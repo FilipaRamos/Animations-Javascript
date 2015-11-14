@@ -46,9 +46,10 @@ XMLscene.prototype.init = function (application) {
     //this.cyl = new MyCylinder(this,1,0.5,0,9,50);
     //this.tri = new MyTriangle(this,-0.5,-0.5,0,0.5,-0.5,0,0,0.5,0);
     //this.spe = new MySphere(this, 0.5,50,50);
-    this.plane = new Plane(this, 20);
+    //this.plane = new Plane(this, 20);
     //this.patch = new Patch(this, 20, 1, [[-0.5, 0.0, 0.5, 1], [-0.5, 0.0, -0.5, 1], [0.5, 0.0, 0.5, 1], [0.5, 0.0, -0.5, 1]]);
-
+	this.t = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
+	
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
     this.gl.clearDepth(100.0);
@@ -174,7 +175,7 @@ XMLscene.prototype.display = function () {
 	//Draw objects
 	this.displayNode(this.tree.root);
 	//this.cyl.display();
-
+	this.t.display();
 	//this.plane.display();
 	// this.patch.display();
 

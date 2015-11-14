@@ -523,7 +523,7 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 			return "type element null.";
 
 		var  args = [];
-		if(type != "plane" && type != "patch" && type != "vehicle"){
+		if(type != "plane" && type != "patch" && type != "vehicle" && type != "terrain"){
 	  	 args = this.reader.getString(leaf[i], 'args',true);
 
 			if(args == null)
@@ -566,9 +566,22 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 				controlPoints.push(coords);
 			}
 
+		var texture = "" ;
+		var heightmap = "";
+
+			if(type == "terrain"){
+
+				texture = this.reader.getString(leaf[i], 'texture');
+				heightmap = this.reader.getString(leaf[i], 'heightmap');
+
+			}
+			
+			console.log('TEXTURE : ' + texture);
+				console.log('HEIGHTMAP : ' + heightmap);
+
 		}
 
-		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints);
+		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints,texture, heightmap);
 		this.scene.tree.leaves.push(l);	
 
 	}

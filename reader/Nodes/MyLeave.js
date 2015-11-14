@@ -7,7 +7,7 @@
 * @param type - the type of the leave
 * @param coords - the coordinates of the leave
 */
-function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPoints) {
+function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPoints, texture, heightmap) {
      this.id = id;
      this.type = type; 
      this.coords = coords;
@@ -35,6 +35,9 @@ function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPo
 
         else if(this.type == "vehicle")
             this.primitive = new MyTriangle(scene, -0.5, -0.5, 0, 0.5, -0.5, 0, 0, 0.5, 0);
+        
+        else if(this.type == "terrain")
+            this.primitive = new Terrain(scene, texture, heightmap);
        
     };
 

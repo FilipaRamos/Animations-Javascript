@@ -1,24 +1,27 @@
-uniform sampler2D hMap;
-uniform sampler2D colorMap;
-
 attribute vec3 aVertexPosition;
 attribute vec3 aVertexNormal;
 attribute vec2 aTextureCoord;
+
+varying vec2 vTextureCoord;
 
 uniform mat4 uMVMatrix;
 uniform mat4 uPMatrix;
 uniform mat4 uNMatrix;
 
+uniform sampler2D hMap;
+uniform sampler2D colorMap;
+
+
 void main(){
 
-    vec4 offset = vec4(0.0,0.0,0.0,1.0);
+    vec4 offset = vec4(0.0,0.0,0.0,0.0);
 
 //you only need to read one because the image is black and white (and grey). 
-   int color =  texture2D(hMap,aTextureCoord).r;
-        aVertexPosition.y = color*0.5;
+   float color =  texture2D(hMap,aTextureCoord).r;
+
+    offset = vec4(aVertexPosition.x, aVertexPosition.y + texture2D(hMap,aTextureCoord).r*0.5 , aVertexPosition.z, 1.0);
+    gl_Position = uPMatrix *uMVMatrix * offset;
 
     vTextureCoord = aTextureCoord;
-    offset = vec4(aVertexPosition, 1.0);
-    gl_Position = gl_ModelViewProjectionMatrix * (gl_Vertex + offset);
 
 }
