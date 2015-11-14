@@ -5,7 +5,6 @@ function LinearAnimation(scene, id, time, crtlPoints){
     this.id = id;
     this.time = time;
     this.crtlPoints = crtlPoints; //relative to animation's position 
-    this.matrix = matrix;
 
     this.i = 0;
 
