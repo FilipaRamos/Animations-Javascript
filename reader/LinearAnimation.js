@@ -15,6 +15,10 @@ function LinearAnimation(scene, id, time, crtlPoints){
     // quando a trajetória muda e se passa para outra reta estes são atualizados
     this.m;
     this.b;
+
+    // values calculated before
+    this.x;
+    this.z;
    
 }
 
@@ -156,7 +160,7 @@ LinearAnimation.prototype.update = function(currentTime, matrix){
 
   var x;
   // adicionar ao x o incremento !!!!!!!!!!!!!!!!!
-  x += incrX;
+  this.x += incrX;
 
   // cálculo dos pontos de passagem de reta
   var pontos = [];
@@ -165,31 +169,34 @@ LinearAnimation.prototype.update = function(currentTime, matrix){
   // verificação dos pontos de passagem
   var k = verificaPontosPassagem(pontos);
 
-  var z;
+  var z = this.z;
 
   if(this.i == 0){ // primeiro declive
 
     this.m = calculaDeclive(this.ctrlPoints[0], this.ctrlPoints[2], this.ctrlPoints[3], this.ctrlPoints[5]);
     this.b = calculaB(this.ctrlPoints[3], this.ctrlPoints[5]);
 
-    z = calculaY(x);
+    this.z = calculaY(x);
 
   }
 
   else{
 
     if (k != -1){ // significa que estamos num ponto de passagem logo tem de ser calculada nova equação da reta
-      z = calculaReta(k);
+      this.z = calculaReta(k);
     }
     else{
-      z = calculaY(x);
+      this.z = calculaY(x);
     }
   }
 
   this.i++;
 
+  // calcular o incremento realizado no z desde o último ponto até este
+  var trans_z = this.z - z;
+
   // update dos valores para serem adicionados à nova matrix
-  var update = vec3.fromValues(incrX, 0, z);
+  var update = vec3.fromValues(incrX, 0, trans_z);
   // fazer a translação
   mat4.translate(matrix, matrix, update);
 
