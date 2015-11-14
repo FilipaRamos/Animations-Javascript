@@ -511,7 +511,7 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 
 	console.log("Leaf Length: " + leaf.length);
 	
-	for(var i = 0; i<leaf.length ; i++){
+	for(var i = 0; i < leaf.length ; i++){
 		
 		var id = this.reader.getString(leaf[i], 'id',true);
 		var type = this.reader.getString(leaf[i], 'type',true);
@@ -541,6 +541,9 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 		var ctlPoints = leaf[i].getElementsByTagName('controlpoint');
 		var controlPoints = [];
 
+		var texture = "";
+		var heightmap = "";
+
 		if (ctlPoints === null)
 				return "controlpoint element is missing.";
 
@@ -565,21 +568,13 @@ MySceneGraph.prototype.parseLeaves= function(rootElement) {
 				
 				controlPoints.push(coords);
 			}
-
-		var texture = "" ;
-		var heightmap = "";
-
-			if(type == "terrain"){
-
-				texture = this.reader.getString(leaf[i], 'texture');
-				heightmap = this.reader.getString(leaf[i], 'heightmap');
-
-			}
-			
-			console.log('TEXTURE : ' + texture);
-				console.log('HEIGHTMAP : ' + heightmap);
-
 		}
+
+		if(type == "terrain"){
+				texture = this.reader.getString(leaf[i], 'texture',true);
+				heightmap = this.reader.getString(leaf[i], 'heightmap', true);
+		}
+
 
 		var l = new MyLeave(this.scene,id, type, coordLeaves, parts,  order, partsU, partsV, controlPoints,texture, heightmap);
 		this.scene.tree.leaves.push(l);	
