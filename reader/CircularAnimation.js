@@ -1,8 +1,9 @@
-function CircularAnimation(scene, animation, center, radius, startang, rotang){
+function CircularAnimation(scene, id, time, center, radius, startang, rotang){
 
  	CGFappearance.call(this,scene);
 
-    this.animation = animation;
+    this.id = id;
+    this.time = time;
     this.center = center;
     this.radius = radius;
     this.startang = startang;
@@ -22,7 +23,7 @@ CircularAnimation.prototype.constructor = CircularAnimation;
 */
 CircularAnimation.prototype.calculaIncremento = function(){
 
-	var incremento = (milesimoS*this.rotang)/this.animation.time;
+	var incremento = (milesimoS*this.rotang)/this.time;
 
 	return incremento;
 

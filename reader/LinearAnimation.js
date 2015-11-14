@@ -1,8 +1,9 @@
-function LinearAnimation(scene, animation, crtlPoints){
+function LinearAnimation(scene, id, time, crtlPoints){
 
  	CGFappearance.call(this,scene);
 
-    this.animation = animation;
+    this.id = id;
+    this.time = time;
     this.crtlPoints = crtlPoints; //relative to animation's position 
 
     this.i = 0;
@@ -68,7 +69,7 @@ LinearAnimation.prototype.calculaY = function(x){
 * Ix = (xT*(1/1000))/t
 * @constructor
 */
-LinearAnimation.prototype.calculaIncrementoX = function(t){
+LinearAnimation.prototype.calculaIncrementoX = function(){
 
   // guarda a distância percorrida em x
   var xT = 0;
@@ -81,7 +82,7 @@ LinearAnimation.prototype.calculaIncrementoX = function(t){
 
   }
 
-  var incremento = (xT*this.milesimoS)/t;
+  var incremento = (xT*this.milesimoS)/this.time;
 
   return incremento;
 
@@ -150,7 +151,7 @@ LinearAnimation.prototype.calculaReta = function(pontos, i, x){
 */
 LinearAnimation.prototype.update = function(currentTime){
 
-  var incrX = calculaIncrementoX(this.animation.time);
+  var incrX = calculaIncrementoX();
 
   var x;
   // adicionar ao x o incremento !!!!!!!!!!!!!!!!!

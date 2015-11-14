@@ -743,7 +743,11 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 			console.log("LINEAR ANIMATION!!!");
 
+			var ctrlPoints = [];
+
 			var controlpointList = animationList[i].getElementsByTagName('controlpoint'); // get the list of controlPoints
+
+			var l = 0;
 
 			for(var k = 0; k < controlpointList.length; k++){
 
@@ -751,10 +755,17 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 				var y = this.reader.getFloat(controlpointList[k], 'yy');
 				var z = this.reader.getFloat(controlpointList[k], 'zz');
 
-				console.log("point: (" + x + ", " + y + ", " + z + ")");
+				ctrlPoints[l] = x;
+				ctrlPoints[l + 1] = y;
+				ctrlPoints[l + 2] = z;
 
-			//var id = new LinearAnimation(this.scene, id,  ,span, );
+				l+3;
+
+				console.log("point: (" + x + ", " + y + ", " + z + ")");
 			}
+
+			var id = new LinearAnimation(this.scene, id, span, ctrlPoints);
+
 		}
 
 		else if(type == 'circular'){ // circular animations
@@ -774,7 +785,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 			console.log("A0 = " + startang + " Ar = " + rotang);
 
-			//var id = new CircularAnimation(this.scene, id, center, radius);
+			var id = new CircularAnimation(this.scene, id, span, center, radius, startang, rotang);
 		}
 
 	}
