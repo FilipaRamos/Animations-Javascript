@@ -154,6 +154,7 @@ LinearAnimation.prototype.update = function(currentTime){
 
   var x;
   // adicionar ao x o incremento !!!!!!!!!!!!!!!!!
+  x += incrX;
 
   // cálculo dos pontos de passagem de reta
   var pontos = [];
