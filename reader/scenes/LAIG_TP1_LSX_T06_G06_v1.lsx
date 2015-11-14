@@ -205,7 +205,7 @@
         <controlpoint x= "0.5" y="0.0" z="0.5" />
         <controlpoint x= "0.5" y="0.0" z="-0.5" />
     </LEAF> 
-    <!---<LEAF id="ss" type="vehicle"/>-->
+    <!---<LEAF id="vehicle" type="vehicle"/>-->
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->
