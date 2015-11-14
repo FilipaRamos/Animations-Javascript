@@ -1,8 +1,6 @@
-function Terrain(scene, divisions){
+function Terrain(scene, vertexURL, fragmentURL){
 
- 	CGFobject.call(this,scene);
-
-    	
+    
 
 
 };
