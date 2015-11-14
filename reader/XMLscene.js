@@ -26,6 +26,8 @@ XMLscene.prototype.init = function (application) {
 	this.stackMaterials = [];
     this.textures = [];
 	this.stackTextures = [];
+	this.animation = [];
+	this.stackAnimation = [];
 
 	this.matrixInitial = mat4.create();
 
@@ -217,6 +219,8 @@ XMLscene.prototype.displayNode = function (nodeID) {
 	if(node.isLeaf){
 		var id_mat = this.stackMaterials[this.stackMaterials.length-1];
 		var id_text = this.stackTextures[this.stackTextures.length-1];
+		var id_animation = this.stackAnimation[this.stackTextures.length-1];
+
 		var s=1,t=1;
 		var j=0;
 
@@ -232,6 +236,12 @@ XMLscene.prototype.displayNode = function (nodeID) {
 				s=this.textures[j].amplif_factorS;
 				t=this.textures[j].amplif_factorT;
 				break;
+			}
+		}
+
+		for(var i=0 ; i < this.animation.length; i++){
+			if(this.animation[i].id == id_mat){
+				this.animation[i].update; 
 			}
 		}
 		
@@ -258,6 +268,11 @@ XMLscene.prototype.displayNode = function (nodeID) {
 			this.stackMaterials.push(node.material);
 		}
 
+		//adicionar animation 
+		if(node.animation != "null"){
+			this.stackAnimation.push(node.animation);
+		}
+
 		//adicionar objectos
 		for(var i=0; i < node.descendants.length; i++){				
 				this.displayNode(node.descendants[i]);				
@@ -269,6 +284,11 @@ XMLscene.prototype.displayNode = function (nodeID) {
 		if(node.text != "null"){
 			this.stackTextures.pop();
 		}
+
+		if(node.animation != "null"){
+			this.stackAnimation.pop();
+		}
+
 		this.popMatrix();
 
 	}

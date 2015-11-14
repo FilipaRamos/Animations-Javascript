@@ -5,6 +5,7 @@ function LinearAnimation(scene, id, time, crtlPoints){
     this.id = id;
     this.time = time;
     this.crtlPoints = crtlPoints; //relative to animation's position 
+    this.matrix = matrix;
 
     this.i = 0;
 
@@ -149,7 +150,7 @@ LinearAnimation.prototype.calculaReta = function(pontos, i, x){
 * Atualiza as coordenadas da animação
 * @constructor
 */
-LinearAnimation.prototype.update = function(currentTime){
+LinearAnimation.prototype.update = function(currentTime, matrix){
 
   var incrX = calculaIncrementoX();
 
@@ -186,5 +187,10 @@ LinearAnimation.prototype.update = function(currentTime){
   }
 
   this.i++;
+
+  // update dos valores para serem adicionados à nova matrix
+  var update = vec3.fromValues(incrX, 0, z);
+  // fazer a translação
+  mat4.translate(matrix, matrix, update);
 
 }
