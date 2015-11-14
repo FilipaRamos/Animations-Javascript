@@ -206,7 +206,6 @@
         <controlpoint x= "0.5" y="0.0" z="-0.5" />
     </LEAF> 
     <!---<LEAF id="vehicle" type="vehicle"/>-->
-    <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->
@@ -221,7 +220,8 @@
         <TEXTURE id="null" />      
         <!--<TRANSLATION x="5" y="0" z="8" />-->
         <DESCENDANTS>
-             <DESCENDANT id="terrain" /> 
+             <DESCENDANT id="patch" /> 
+             
          
           <!-- <DESCENDANT id="mesa" /> 
             <DESCENDANT id="paredeDireita" /> 
