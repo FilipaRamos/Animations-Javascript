@@ -268,7 +268,7 @@ XMLscene.prototype.displayNode = function (nodeID) {
 			this.stackMaterials.push(node.material);
 		}
 
-		//adicionar animation 
+		//adicionar animations 
 		if(node.animation != "null"){
 			this.stackAnimation.push(node.animation);
 		}
@@ -292,9 +292,5 @@ XMLscene.prototype.displayNode = function (nodeID) {
 		this.popMatrix();
 
 	}
-
-};
-
-XMLscene.prototype.Animations = function(){
 
 };
