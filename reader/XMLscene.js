@@ -175,7 +175,7 @@ XMLscene.prototype.display = function () {
 	//Draw objects
 	this.displayNode(this.tree.root);
 	//this.cyl.display();
-	this.t.display();
+	//this.t.display();
 	//this.plane.display();
 	// this.patch.display();
 
