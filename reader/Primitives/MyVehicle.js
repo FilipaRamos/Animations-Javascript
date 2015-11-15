@@ -23,6 +23,13 @@ function MyVehicle(scene) {
     this.naveFront = new Patch(scene, 20, 20, 2, this.controlVertex2);
     this.naveBack = new Patch(scene, 20, 20, 2, this.controlVertex3);
 
+    this.appearance = new CGFappearance(this.scene);
+	this.appearance.setAmbient(0.3, 0.3, 0.3, 1);
+	this.appearance.setDiffuse(0.7, 0.7, 0.7, 1);
+	this.appearance.setSpecular(0.0, 0.0, 0.0, 1);	
+	this.appearance.setShininess(120);
+	this.texture = new CGFtexture(this.scene, "texture/nave.jpg");
+	this.appearance.setTexture(this.texture);
     
 };
 
@@ -31,7 +38,8 @@ MyVehicle.prototype.constructor = MyVehicle;
 
 MyVehicle.prototype.display = function() 
 {
-   this.scene.scale(0.5,0.5,0.5);
+   this.scene.scale(0.125,0.125,0.25);
+   this.appearance.apply();
    this.displayCreator();
 };
 
