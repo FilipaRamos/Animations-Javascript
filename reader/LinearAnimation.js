@@ -153,7 +153,7 @@ LinearAnimation.prototype.calculaReta = function(pontos, i, x){
 * Atualiza as coordenadas da animação
 * @constructor
 */
-LinearAnimation.prototype.update = function(currentTime, matrix){
+LinearAnimation.prototype.update = function(currentTime){
 
   var incrX = calculaIncrementoX();
 
@@ -196,7 +196,7 @@ LinearAnimation.prototype.update = function(currentTime, matrix){
 
   // update dos valores para serem adicionados à nova matrix
   var update = vec3.fromValues(incrX, 0, trans_z);
-  // fazer a translação
-  mat4.translate(matrix, matrix, update);
+
+  return update;
 
 }

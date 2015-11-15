@@ -31,6 +31,8 @@ XMLscene.prototype.init = function (application) {
 
 	this.matrixInitial = mat4.create();
 
+	this.ani = [];
+
 	//this.lights = [];
 	this.onOff = [false,false,false,false,false,false,false,false];
 	this.luzesid = [];
@@ -242,12 +244,18 @@ XMLscene.prototype.displayNode = function (nodeID) {
 			}
 		}
 
+		var flag;
+
 		for(var i=0 ; i < this.animation.length; i++){
 			if(this.animation[i].id == id_animation){
-				this.animation[i].update; 
+				ani = this.animation[i].update; 
+				flag = 1;
 			}
 		}
-		
+
+		if(flag == 1)
+			mat4.translate(transformation, transformation, ani);
+
 		node.primitive.updateTextCoords(s,t);
 		node.primitive.display();
 			

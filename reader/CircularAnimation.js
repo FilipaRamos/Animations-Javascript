@@ -54,8 +54,7 @@ CircularAnimation.prototype.update = function(currentTime, matrix){
 
     // update dos valores para serem adicionados à nova matrix
     var update = vec3.fromValues(trans_x, 0, trans_z);
-     // fazer a translação
-    mat4.translate(matrix, matrix, update);
-
+    
+    return update;
 
 }
