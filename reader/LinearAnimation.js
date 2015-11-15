@@ -16,8 +16,8 @@ function LinearAnimation(scene, id, time, crtlPoints){
     this.b;
 
     // values calculated before
-    this.x;
-    this.z;
+    this.x = 0;
+    this.z = 0;
    
 }
 
