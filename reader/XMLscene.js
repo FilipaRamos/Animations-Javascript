@@ -248,7 +248,7 @@ XMLscene.prototype.displayNode = function (nodeID) {
 
 		for(var i=0 ; i < this.animation.length; i++){
 			if(this.animation[i].id == id_animation){
-				ani = this.animation[i].update; 
+				ani = this.animation[i].update(this.currTime); 
 				flag = 1;
 			}
 		}

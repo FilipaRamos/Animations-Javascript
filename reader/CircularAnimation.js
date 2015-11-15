@@ -37,7 +37,7 @@ CircularAnimation.prototype.calculaIncremento = function(){
 * Update das coordenadas 
 * @constructor
 */
-CircularAnimation.prototype.update = function(currentTime, matrix){
+CircularAnimation.prototype.update = function(currentTime){
 
 	// representa o ângulo de incremento a cada milésimo de segundo
 	var AngI = calculaIncremento();
