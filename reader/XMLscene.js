@@ -48,7 +48,7 @@ XMLscene.prototype.init = function (application) {
     //this.spe = new MySphere(this, 0.5,50,50);
     //this.plane = new Plane(this, 20);
     //this.patch = new Patch(this, 20, 1, [[-0.5, 0.0, 0.5, 1], [-0.5, 0.0, -0.5, 1], [0.5, 0.0, 0.5, 1], [0.5, 0.0, -0.5, 1]]);
-	this.t = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
+	//this.t = new Terrain(this, "shaders/colorMap.jpg", "shaders/hmap.jpg");
 	
     this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
 	this.test = new CGFtexture(this, "texture/floor.jpg");
@@ -300,7 +300,10 @@ XMLscene.prototype.displayNode = function (nodeID) {
 
 
 XMLscene.prototype.update = function(currTime) {
-
-	
-};
-
+    if (this.time === -1) {
+        this.time = currTime;
+        return;
+    }
+    
+    this.currTime = (currTime - this.time) /1000;
+}
