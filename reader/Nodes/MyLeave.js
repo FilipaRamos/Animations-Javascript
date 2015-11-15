@@ -34,7 +34,7 @@ function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPo
             this.primitive = new Patch(scene, partsU, partsV, order, controlPoints);
 
         else if(this.type == "vehicle")
-            this.primitive = new MyTriangle(scene, -0.5, -0.5, 0, 0.5, -0.5, 0, 0, 0.5, 0);
+            this.primitive = new MyVehicle(scene);
         
         else if(this.type == "terrain")
             this.primitive = new Terrain(scene, texture, heightmap);
