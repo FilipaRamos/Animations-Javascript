@@ -7,11 +7,12 @@
  * @param text - the texture to apply on the node
  * @param trans - the trasnformation to apply to the node
  */
-function MyNode(id, mat, text, trans) {
+function MyNode(id, mat, text, trans, animationID) {
      this.id = id;
      this.descendants = [];
      this.material = mat;
      this.text = text;
+     this.animation = animationID;
      this.transformation = trans;
      this.isLeaf = false;
  };

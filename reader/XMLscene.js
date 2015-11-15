@@ -58,6 +58,9 @@ XMLscene.prototype.init = function (application) {
     this.gl.depthFunc(this.gl.LEQUAL);
 	this.enableTextures(true);
 	this.axis=new CGFaxis(this);
+
+	this.setUpdatePeriod(100);
+	
 };
 
 /**
@@ -179,8 +182,7 @@ XMLscene.prototype.display = function () {
 	//this.plane.display();
 	// this.patch.display();
 
-	
-	
+
 	
 	
 
@@ -241,7 +243,7 @@ XMLscene.prototype.displayNode = function (nodeID) {
 		}
 
 		for(var i=0 ; i < this.animation.length; i++){
-			if(this.animation[i].id == id_mat){
+			if(this.animation[i].id == id_animation){
 				this.animation[i].update; 
 			}
 		}
@@ -295,3 +297,10 @@ XMLscene.prototype.displayNode = function (nodeID) {
 	}
 
 };
+
+
+XMLscene.prototype.update = function(currTime) {
+
+	
+};
+

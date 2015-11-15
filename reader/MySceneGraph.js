@@ -640,6 +640,16 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 
 			console.log("Texture " + texture_id);
 
+		var animation = node[i].getElementsByTagName('animationref');
+		 
+
+		var animation_id = "null";
+
+		if(animation[0])
+			animation_id = this.reader.getString(animation[0], 'id');
+
+		console.log("Animation " + animation_id);
+
 		var nnodes=node[i].children.length;
 		var transMatrix = mat4.create();
 		mat4.identity(transMatrix);
@@ -697,7 +707,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 			}
 		}
 
-		var mynode = new MyNode(node_id, material_id, texture_id, transMatrix);
+		var mynode = new MyNode(node_id, material_id, texture_id, transMatrix, animation_id);
 		this.scene.tree.addNode(mynode);
 
 		

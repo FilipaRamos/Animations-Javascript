@@ -205,7 +205,8 @@
         <controlpoint x= "0.5" y="0.0" z="0.5" />
         <controlpoint x= "0.5" y="0.0" z="-0.5" />
     </LEAF> 
-    <!---<LEAF id="vehicle" type="vehicle"/>-->
+    <LEAF id="vehicle" type="vehicle"/> 
+    <LEAF id="terrain" type="terrain" texture="shaders/colorMap.jpg" heightmap="shaders/hmap.jpg" />
 </LEAVES>
 
 <!-- INITIALIZE THE NODES -->
@@ -217,12 +218,10 @@
 
     <NODE id="sala">      
         <MATERIAL id="null" />    
-        <TEXTURE id="null" />      
-        <!--<TRANSLATION x="5" y="0" z="8" />-->
+        <TEXTURE id="null" />    
         <DESCENDANTS>
-             <DESCENDANT id="patch" /> 
-             
-         
+             <DESCENDANT id="terrain" /> 
+              <DESCENDANT id="battleship" /> 
           <!-- <DESCENDANT id="mesa" /> 
             <DESCENDANT id="paredeDireita" /> 
             <DESCENDANT id="paredeEsquerda" /> 
@@ -230,6 +229,18 @@
             <DESCENDANT id="arvore" />
             <DESCENDANT id="lareira" /> -->
 
+        </DESCENDANTS>
+
+    </NODE>
+    
+    
+    <NODE id="battleship">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />      
+        <animationref id="AniLin" />
+        <TRANSLATION x="0" y="1" z="0" /> 
+        <DESCENDANTS>
+            <DESCENDANT id="vehicle" /> 
         </DESCENDANTS>
 
     </NODE>
