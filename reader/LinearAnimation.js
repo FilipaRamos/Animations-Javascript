@@ -12,8 +12,8 @@ function LinearAnimation(scene, id, time, ctrlPoints){
 
     // guardam os valores do declive e do b da reta em questão
     // quando a trajetória muda e se passa para outra reta estes são atualizados
-    this.m;
-    this.b;
+    this.m = 0;
+    this.b = 0;
 
     // values calculated before
     this.x = 0;
@@ -47,9 +47,9 @@ LinearAnimation.prototype.calculaDeclive = function(x1, y1, x2, y2){
 * Calcula o b da reta do trajeto
 * @constructor
 */
-LinearAnimation.prototype.calculaB = function(x, y){
+LinearAnimation.prototype.calculaB = function(y){
 
-  this.b = y - this.m*x;
+  this.b = y - this.m*this.x;
 
 }
 
@@ -57,10 +57,9 @@ LinearAnimation.prototype.calculaB = function(x, y){
 * Calcula o y atual
 * @constructor
 */
-LinearAnimation.prototype.calculaY = function(x){
+LinearAnimation.prototype.calculaY = function(){
 
-  var y = this.m*x + this.b;
-
+  var y = this.m*this.x + this.b;
   return y;
 
 }
@@ -77,17 +76,14 @@ LinearAnimation.prototype.calculaIncrementoX = function(){
 
   // guarda a distância percorrida em x
   var xT = 0;
-  var k = 0;
+  var k;
   // k incrementado 3 valores porque o vetor com os 
   // pontos de controlo tem o seguinte formato: [x1, y1, z1, x2, y2, z2, ...]
-  for(k; k < this.ctrlPoints.length;k+3){
+  for(k = 0; k < this.ctrlPoints.length; k = k+3){
 
     xT += this.ctrlPoints[k];
 
   }
-
-  console.log("ctrlPoints: " + this.ctrlPoints);
-  console.log("incremento-> somaX =" + xT);
 
   var incremento = (xT*this.milesimoS)/this.time;
 
@@ -102,15 +98,12 @@ LinearAnimation.prototype.calculaIncrementoX = function(){
 LinearAnimation.prototype.calculaPontosPassagem = function(){
 
   var pontos = [];
-  var l = 0;
 
   // o primeiro ponto pertence à primeira reta logo f = 3
-  for(var f = 3; f < this.ctrlPoints.length; f+3){
+  for(var f = 3; f < this.ctrlPoints.length; f = f+3){
 
-    pontos[l] = this.ctrlPoints[f];
-    pontos[l+1] = this.ctrlPoints[f+2];
-
-    l+2;
+    pontos.push(this.ctrlPoints[f]);
+    pontos.push(this.ctrlPoints[f+2]);
 
   }
 
@@ -127,7 +120,7 @@ LinearAnimation.prototype.verificaPontosPassagem = function(pontos, incremento){
 
   // se o i for igual a ponto/incremento está no ponto de passagem
   // verificar o x logo passa-se de 2 em 2 elementos
-  for(var k = 0; k < pontos.length; k+2){
+  for(var k = 0; k < pontos.length; k = k+2){
     if(this.i == (Math.floor(pontos[k])/incremento))
       return k;
   }
@@ -140,13 +133,13 @@ LinearAnimation.prototype.verificaPontosPassagem = function(pontos, incremento){
 * Cálculo da equação da nova reta
 * @constructor
 */
-LinearAnimation.prototype.calculaReta = function(pontos, i, x){
+LinearAnimation.prototype.calculaReta = function(pontos, i){
 
-  this.m = calculaDeclive(pontos[i], pontos[i+1], pontos[i+2], pontos[i+3]);
+  this.m = this.calculaDeclive(pontos[i], pontos[i+1], pontos[i+2], pontos[i+3]);
 
-  this.b = calculaB(pontos[i], pontos[i+1]);
+  this.b = this.calculaB(pontos[i], pontos[i+1]);
 
-  var y = calculaY(x);
+  var y = this.calculaY();
 
   return y;
 
@@ -157,40 +150,45 @@ LinearAnimation.prototype.calculaReta = function(pontos, i, x){
 * @constructor
 */
 LinearAnimation.prototype.update = function(currentTime){
-  console.log("entrou no update!");
+
   var incrX = this.calculaIncrementoX();
-  console.log("incr " + incrX);
-  var x;
+
+  console.log(incrX);
   // adicionar ao x o incremento !!!!!!!!!!!!!!!!!
   this.x += incrX;
 
-  console.log("X: " + incrX);
+  console.log("X: " + this.x);
 
   // cálculo dos pontos de passagem de reta
   var pontos = [];
   pontos = this.calculaPontosPassagem();
 
+  console.log("pontos: " + pontos);
+
   // verificação dos pontos de passagem
   var k = this.verificaPontosPassagem(pontos);
 
-  var z = this.z;
+  var z = 0;
+  console.log("Z inicial: " + z);
+  console.log("this.z: " + this.z);
+  z = this.z;
 
   if(this.i == 0){ // primeiro declive
 
-    this.m = calculaDeclive(this.ctrlPoints[0], this.ctrlPoints[2], this.ctrlPoints[3], this.ctrlPoints[5]);
-    this.b = calculaB(this.ctrlPoints[3], this.ctrlPoints[5]);
+    this.calculaDeclive(this.ctrlPoints[0], this.ctrlPoints[2], this.ctrlPoints[3], this.ctrlPoints[5]);
+    this.calculaB(this.ctrlPoints[3], this.ctrlPoints[5]);
 
-    this.z = calculaY(x);
+    this.z = this.calculaY();
 
   }
 
   else{
 
     if (k != -1){ // significa que estamos num ponto de passagem logo tem de ser calculada nova equação da reta
-      this.z = calculaReta(k);
+      this.z = this.calculaReta(pontos, k);
     }
     else{
-      this.z = calculaY(x);
+      this.z = this.calculaY();
     }
   }
 
@@ -198,12 +196,12 @@ LinearAnimation.prototype.update = function(currentTime){
 
   // calcular o incremento realizado no z desde o último ponto até este
   var trans_z = this.z - z;
+  console.log("Z -> " + z);
 
   // update dos valores para serem adicionados à nova matrix
   var update = vec3.fromValues(incrX, 0, trans_z);
 
   console.log(incrX);
-  console.log(trans_z);
 
   return update;
 

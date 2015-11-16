@@ -27,7 +27,7 @@ CircularAnimation.prototype.constructor = CircularAnimation;
 */
 CircularAnimation.prototype.calculaIncremento = function(){
 
-	var incremento = (milesimoS*this.rotang)/this.time;
+	var incremento = (this.milesimoS*this.rotang)/this.time;
 
 	return incremento;
 
@@ -40,7 +40,7 @@ CircularAnimation.prototype.calculaIncremento = function(){
 CircularAnimation.prototype.update = function(currentTime){
 
 	// representa o ângulo de incremento a cada milésimo de segundo
-	var AngI = calculaIncremento();
+	var AngI = this.calculaIncremento();
 
 	var x = this.radius*Math.cos(this.startang + AngI);
 
