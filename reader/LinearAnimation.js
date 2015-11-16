@@ -1,10 +1,10 @@
-function LinearAnimation(scene, id, time, crtlPoints){
+function LinearAnimation(scene, id, time, ctrlPoints){
 
  	CGFappearance.call(this,scene);
 
     this.id = id;
     this.time = time;
-    this.crtlPoints = crtlPoints; //relative to animation's position 
+    this.ctrlPoints = ctrlPoints; //relative to animation's position 
 
     this.i = 0;
 
@@ -78,13 +78,16 @@ LinearAnimation.prototype.calculaIncrementoX = function(){
   // guarda a distância percorrida em x
   var xT = 0;
 
+  console.log("ctrlPoints: " + this.ctrlPoints);
   // k incrementado 3 valores porque o vetor com os 
   // pontos de controlo tem o seguinte formato: [x1, y1, z1, x2, y2, z2, ...]
-  for(var k = 0; k < ctrlPoints.length; k+3){
+  for(var k = 0; k < this.ctrlPoints.length; k+3){
 
-    xT += ctrlPoints[k];
+    xT += this.ctrlPoints[k];
 
   }
+  console.log("ctrlPoints: " + this.ctrlPoints);
+  console.log("incremento-> somaX =" + xT);
 
   var incremento = (xT*this.milesimoS)/this.time;
 
@@ -102,10 +105,10 @@ LinearAnimation.prototype.calculaPontosPassagem = function(){
   var l = 0;
 
   // o primeiro ponto pertence à primeira reta logo f = 3
-  for(var f = 3; f < ctrlPoints.length; f+3){
+  for(var f = 3; f < this.ctrlPoints.length; f+3){
 
-    pontos[l] = ctrlPoints[f];
-    pontos[l+1] = ctrlPoints[f+2];
+    pontos[l] = this.ctrlPoints[f];
+    pontos[l+1] = this.ctrlPoints[f+2];
 
     l+2;
 
@@ -154,19 +157,21 @@ LinearAnimation.prototype.calculaReta = function(pontos, i, x){
 * @constructor
 */
 LinearAnimation.prototype.update = function(currentTime){
-
-  var incrX = calculaIncrementoX();
-
+  console.log("entrou no update!");
+  var incrX = this.calculaIncrementoX();
+  console.log("incr " + incrX);
   var x;
   // adicionar ao x o incremento !!!!!!!!!!!!!!!!!
   this.x += incrX;
 
+  console.log("X: " + incrX);
+
   // cálculo dos pontos de passagem de reta
   var pontos = [];
-  pontos = calculaPontosPassagem();
+  pontos = this.calculaPontosPassagem();
 
   // verificação dos pontos de passagem
-  var k = verificaPontosPassagem(pontos);
+  var k = this.verificaPontosPassagem(pontos);
 
   var z = this.z;
 

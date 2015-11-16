@@ -224,7 +224,7 @@ XMLscene.prototype.displayNode = function (nodeID) {
 	if(node.isLeaf){
 		var id_mat = this.stackMaterials[this.stackMaterials.length-1];
 		var id_text = this.stackTextures[this.stackTextures.length-1];
-		var id_animation = this.stackAnimation[this.stackTextures.length-1];
+		var id_animation = this.stackAnimation[this.stackAnimation.length-1];
 
 		var s=1,t=1;
 		var j=0;
@@ -248,8 +248,7 @@ XMLscene.prototype.displayNode = function (nodeID) {
 
 		for(var i=0 ; i < this.animation.length; i++){
 			if(this.animation[i].id == id_animation){
-				console.log("found animation!");
-				ani = this.animation[i].update(this.currTime); 
+				ani = this.animation[i].update(this.currTime);
 				flag = 1;
 			}
 		}
@@ -307,7 +306,6 @@ XMLscene.prototype.displayNode = function (nodeID) {
 	}
 
 };
-
 
 XMLscene.prototype.update = function(currTime) {
     if (this.time === -1) {

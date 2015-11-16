@@ -653,6 +653,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 		var nnodes=node[i].children.length;
 		var transMatrix = mat4.create();
 		mat4.identity(transMatrix);
+
 		for (var m=0; m < nnodes; m++)
 		{
 			var e=node[i].children[m];
@@ -767,24 +768,22 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 			var controlpointList = animationList[i].getElementsByTagName('controlpoint'); // get the list of controlPoints
 
-			var l = 0;
-
 			for(var k = 0; k < controlpointList.length; k++){
 
 				var x = this.reader.getFloat(controlpointList[k], 'xx');
 				var y = this.reader.getFloat(controlpointList[k], 'yy');
 				var z = this.reader.getFloat(controlpointList[k], 'zz');
 
-				ctrlPoints[l] = x;
-				ctrlPoints[l + 1] = y;
-				ctrlPoints[l + 2] = z;
-
-				l+3;
+				ctrlPoints.push(x);
+				ctrlPoints.push(y);
+				ctrlPoints.push(z);
 
 				console.log("point: (" + x + ", " + y + ", " + z + ")");
 			}
 
 			var id = new LinearAnimation(this.scene, id, span, ctrlPoints);
+
+			console.log("ctrlPoints FINAL!! ->> " + ctrlPoints);
 
 		}
 
@@ -807,6 +806,8 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 
 			var id = new CircularAnimation(this.scene, id, span, center, radius, startang, rotang);
 		}
+
+		this.scene.animation.push(id);
 
 	}
 

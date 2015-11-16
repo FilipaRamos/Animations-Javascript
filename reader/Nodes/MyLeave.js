@@ -20,7 +20,6 @@ function MyLeave(scene,id, type, coords, parts, order, partsU, partsV, controlPo
         else if(this.type == "cylinder")
           this.primitive = new MyCylinder(scene, parseFloat(this.coords[0]), parseFloat(this.coords[1]), parseFloat(this.coords[2]), parseFloat(this.coords[3]), parseFloat(this.coords[4]));
     
-     
         else if(this.type == "sphere")
           this.primitive = new MySphere(scene,parseFloat(this.coords[0]), parseFloat(this.coords[1]), parseFloat(this.coords[2]));
 
