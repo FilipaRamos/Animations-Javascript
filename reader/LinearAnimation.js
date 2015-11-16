@@ -77,15 +77,15 @@ LinearAnimation.prototype.calculaIncrementoX = function(){
 
   // guarda a distância percorrida em x
   var xT = 0;
-
-  console.log("ctrlPoints: " + this.ctrlPoints);
+  var k = 0;
   // k incrementado 3 valores porque o vetor com os 
   // pontos de controlo tem o seguinte formato: [x1, y1, z1, x2, y2, z2, ...]
-  for(var k = 0; k < this.ctrlPoints.length; k+3){
+  for(k; k < this.ctrlPoints.length;k+3){
 
     xT += this.ctrlPoints[k];
 
   }
+
   console.log("ctrlPoints: " + this.ctrlPoints);
   console.log("incremento-> somaX =" + xT);
 
