@@ -78,14 +78,7 @@ MySceneGraph.prototype.onXMLReady=function()
 		this.onXMLError(error);
 		return;
 	}
-
-	error = this.parseNodes(rootElement);
 	
-	if (error != null) {
-		this.onXMLError(error);
-		return;
-	}
-
 	error = this.parseAnimations(rootElement);
 
 	if (error != null) {
@@ -93,6 +86,13 @@ MySceneGraph.prototype.onXMLReady=function()
 		return;
 	}
 
+	error = this.parseNodes(rootElement);
+	
+	if (error != null) {
+		this.onXMLError(error);
+		return;
+	}
+	
 	//console.warn("CENAS!!!!");
 	this.loadedOk=true;
 	
@@ -645,10 +645,10 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 
 		var animation_id = "null";
 
-		if(animation[0])
+		if(animation[0]){
 			animation_id = this.reader.getString(animation[0], 'id');
 
-		console.log("Animation " + animation_id);
+		console.log("Animation " + animation_id);}
 
 		var nnodes=node[i].children.length;
 		var transMatrix = mat4.create();
@@ -807,7 +807,7 @@ MySceneGraph.prototype.parseAnimations = function(rootElement){
 			var id = new CircularAnimation(this.scene, id, span, center, radius, startang, rotang);
 		}
 
-		this.scene.animation.push(id);
+		this.scene.animations.push(id);
 
 	}
 
