@@ -278,7 +278,7 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 			for(var i = 0; i < this.animations.length ; i++){
 				if(this.animations[i].id == node.animation){
 					//VERIFICA SE É ESTA A MATRIX A CHAMAR...
-					matrixAnimation = this.animations[i].update;
+					matrixAnimation = this.animations[i].update(this.currTime);
 					console.log("ANIMATION CALLED!!! " + node.animation);
 					break;
 				}

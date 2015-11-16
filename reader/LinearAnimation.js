@@ -137,7 +137,7 @@ LinearAnimation.prototype.calculaReta = function(pontos, i){
 
   this.m = this.calculaDeclive(pontos[i], pontos[i+1], pontos[i+2], pontos[i+3]);
 
-  this.b = this.calculaB(pontos[i], pontos[i+1]);
+  this.b = this.calculaB(pontos[i+1]);
 
   var y = this.calculaY();
 
@@ -176,7 +176,7 @@ LinearAnimation.prototype.update = function(currentTime){
   if(this.i == 0){ // primeiro declive
 
     this.calculaDeclive(this.ctrlPoints[0], this.ctrlPoints[2], this.ctrlPoints[3], this.ctrlPoints[5]);
-    this.calculaB(this.ctrlPoints[3], this.ctrlPoints[5]);
+    this.calculaB(this.ctrlPoints[5]);
 
     this.z = this.calculaY();
 
@@ -200,8 +200,6 @@ LinearAnimation.prototype.update = function(currentTime){
 
   // update dos valores para serem adicionados à nova matrix
   var update = vec3.fromValues(incrX, 0, trans_z);
-
-  console.log(incrX);
 
   return update;
 
