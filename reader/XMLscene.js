@@ -244,7 +244,7 @@ XMLscene.prototype.displayNode = function (nodeID) {
 			}
 		}
 
-		var flag;
+		var flag = 0;
 
 		for(var i=0 ; i < this.animation.length; i++){
 			if(this.animation[i].id == id_animation){
@@ -254,9 +254,10 @@ XMLscene.prototype.displayNode = function (nodeID) {
 			}
 		}
 
-		if(flag == 1)
-			mat4.translate(transformation, transformation, ani);
-
+		if(flag == 1){
+			mat4.translate(node.transformation, node.transformation, ani);
+			flag = 0;
+		}
 		node.primitive.updateTextCoords(s,t);
 		node.primitive.display();
 			
