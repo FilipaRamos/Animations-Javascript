@@ -15,8 +15,6 @@ function LinearAnimation(scene, id, time, ctrlPoints){
     this.calculaDist();
 
     this.speed = this.disT / this.time;
-
-    
    
 }
 
@@ -28,7 +26,7 @@ LinearAnimation.prototype = Object.create(CGFappearance.prototype);
 */
 LinearAnimation.prototype.calculaDist = function(){
 
-  for (var i = 0; i < this.ctrlPoints.length-1; i = i+3){
+  for (var i = 0; i < this.ctrlPoints.length-4; i = i+3){
 
     this.disT += vec3.distance(vec3.fromValues(this.ctrlPoints[i], this.ctrlPoints[i+1], this.ctrlPoints[i+2]), 
                               vec3.fromValues(this.ctrlPoints[i+3], this.ctrlPoints[i+4], this.ctrlPoints[i+5]));
@@ -42,14 +40,14 @@ LinearAnimation.prototype.calculaDist = function(){
 * Atualiza as coordenadas da animação
 * @method
 */
-LinearAnimation.prototype.update = function(currentTime){
+LinearAnimation.prototype.update = function(scene, currentTime){
 
   var time = currentTime / 1000;
 
   if (time > this.time)
     return;
 
-  var disAtual = this.speed / currentTime;
+  var disAtual = this.speed * currentTime;
 
 
   for (var k = 0; k < this.distance.length; k++){
@@ -59,19 +57,15 @@ LinearAnimation.prototype.update = function(currentTime){
 
   }
 
+  k--;
   var progress;
+  
+  progress = disAtual / (this.distance[k+1]-this.distance[k]);
 
-  if (k > 0)
-    progress = disAtual / (this.distance[k]-this.distance[k-1]);
-  else
-    progress = disAtual / (this.distance[k+1]-this.distance[k]);
+  var translation = vec3.fromValues(  (this.ctrlPoints[(k+1)*3  ]-  this.ctrlPoints[(k*3) ])*progress + this.ctrlPoints[(k*3)  ],
+                                      (this.ctrlPoints[(k+1)*3+1]-this.ctrlPoints[(k*3+1) ])*progress + this.ctrlPoints[(k*3+1)],
+                                      (this.ctrlPoints[(k+1)*3+2]-this.ctrlPoints[(k*3+2) ])*progress + this.ctrlPoints[(k*3+2)]);
 
-  var translation = vec3.fromValues((this.ctrlPoints[k*3]-this.ctrlPoints[(k*3)-3])*progress + this.ctrlPoints[(k*3)-3],
-                                      (this.ctrlPoints[k*3+1]-this.ctrlPoints[(k*3+1)-3])*progress + this.ctrlPoints[(k*3+1)-3],
-                                      (this.ctrlPoints[k*3+2]-this.ctrlPoints[(k*3+2)-3])*progress + this.ctrlPoints[(k*3+2)-3]);
-
-  //this.scene.translate(translation[0], translation[1], translation[2]);
-
-  return translation;
+  this.scene.translate(translation[0], translation[1], translation[2]);
   
 }

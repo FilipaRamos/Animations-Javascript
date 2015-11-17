@@ -30,6 +30,7 @@ XMLscene.prototype.init = function (application) {
 	this.onOff = [false,false,false,false,false,false,false,false];
 	this.luzesid = [];
 	
+	this.time = -1;
 
 	this.interface = new CGFinterface(this,application);
 	this.gui = new dat.GUI();
@@ -279,7 +280,7 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 			for(var i = 0; i < this.animations.length ; i++){
 				if(this.animations[i].id == node.animation){
 					//VERIFICA SE É ESTA A MATRIX A CHAMAR...
-					 matrixAnimation = this.animations[i].update(this.currTime);
+					this.animations[i].update(this.scene, this.currTime);
 					break;
 				}
 			} 
@@ -289,7 +290,7 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 		for(var i = 0; i < node.descendants.length; i++){
 			this.pushMatrix();
 			//Adicionar animações
-			this.multMatrix(matrixAnimation);
+			//this.multMatrix(matrixAnimation);
 			this.multMatrix(node.transformation);
 
 			this.displayNode(node.descendants[i], nextTextureID, nextMaterialID);
