@@ -238,6 +238,7 @@
         <MATERIAL id="null" />    
         <TEXTURE id="null" />      
         <TRANSLATION x="0" y="1" z="0" /> 
+        <animationref id="AniLin" /> 
         <animationref id="AniRot" /> 
         <DESCENDANTS>
             <DESCENDANT id="vehicle" /> 
