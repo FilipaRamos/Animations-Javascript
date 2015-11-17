@@ -15,6 +15,8 @@ function LinearAnimation(scene, id, time, ctrlPoints){
     this.calculaDist();
 
     this.speed = this.disT / this.time;
+
+    this.time /= 1000;
    
 }
 
@@ -45,7 +47,7 @@ LinearAnimation.prototype.update = function(scene, currentTime){
   var time = currentTime / 1000;
 
   if (time > this.time)
-    return;
+    return -1;
 
   var disAtual = this.speed * currentTime;
 
@@ -59,12 +61,12 @@ LinearAnimation.prototype.update = function(scene, currentTime){
 
   k--;
   var progress;
-  
-  progress = disAtual / (this.distance[k+1]-this.distance[k]);
 
-  var translation = vec3.fromValues(  (this.ctrlPoints[(k+1)*3  ]-  this.ctrlPoints[(k*3) ])*progress + this.ctrlPoints[(k*3)  ],
-                                      (this.ctrlPoints[(k+1)*3+1]-this.ctrlPoints[(k*3+1) ])*progress + this.ctrlPoints[(k*3+1)],
-                                      (this.ctrlPoints[(k+1)*3+2]-this.ctrlPoints[(k*3+2) ])*progress + this.ctrlPoints[(k*3+2)]);
+  progress = (disAtual - this.distance[k]) / (this.distance[k+1] - this.distance[k]);
+
+  var translation = vec3.fromValues(  (this.ctrlPoints[(k+1)*3] -  this.ctrlPoints[(k*3) ])*progress + this.ctrlPoints[(k*3)  ],
+                                      (this.ctrlPoints[(k+1)*3+1] - this.ctrlPoints[(k*3+1) ])*progress + this.ctrlPoints[(k*3+1)],
+                                      (this.ctrlPoints[(k+1)*3+2] - this.ctrlPoints[(k*3+2) ])*progress + this.ctrlPoints[(k*3+2)]);
 
   this.scene.translate(translation[0], translation[1], translation[2]);
   

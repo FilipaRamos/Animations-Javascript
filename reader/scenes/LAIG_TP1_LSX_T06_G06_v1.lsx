@@ -183,8 +183,8 @@
 <!-- nesta versão do formato LSX, type pode ter o valor “linear” ou "circular" -->
     <animation id="AniLin" span="10" type="linear">
         <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="15" yy="0" zz="0" />
-        <controlpoint xx="12" yy="0" zz="0" />
+        <controlpoint xx="1" yy="0" zz="0" />
+        <controlpoint xx="1" yy="1" zz="0" />
     </animation>
     <animation id="AniRot" span="20" type="circular" center="10 10 10" radius="5" startang="40" rotang="20" />
 </animations>
