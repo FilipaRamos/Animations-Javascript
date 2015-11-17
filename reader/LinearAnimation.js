@@ -198,7 +198,7 @@ LinearAnimation.prototype.update = function(currentTime){
   var trans_z = this.z - z;
   console.log("Z -> " + z);
 
-  // update dos valores para serem adicionados à nova matrix
+  // update dos valores para serem adicionados à nova matrix  
   var update = vec3.fromValues(incrX, 0, trans_z);
 
   return update;
