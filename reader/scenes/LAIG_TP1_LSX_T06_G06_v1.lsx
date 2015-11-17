@@ -184,9 +184,9 @@
     <animation id="AniLin" span="10" type="linear">
         <controlpoint xx="0" yy="5" zz="4" />
         <controlpoint xx="1" yy="2" zz="2" />
-        <controlpoint xx="1" yy="1" zz="1" />
+        <controlpoint xx="0" yy="0.5" zz="0" />
     </animation>
-    <animation id="AniRot" span="20" type="circular" center="10 10 10" radius="5" startang="40" rotang="20" />
+    <animation id="AniRot" span="1" type="circular" center="0 -0.3 0" radius="0.5" startang="40" rotang="20" />
 </animations>
 
 <!-- INITIALIZE THE LEAVES -->
@@ -238,7 +238,7 @@
         <MATERIAL id="null" />    
         <TEXTURE id="null" />      
         <TRANSLATION x="0" y="1" z="0" /> 
-        <animationref id="AniLin" /> 
+        <animationref id="AniRot" /> 
         <DESCENDANTS>
             <DESCENDANT id="vehicle" /> 
         </DESCENDANTS>

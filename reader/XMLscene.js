@@ -280,7 +280,7 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 			for(var i = 0; i < this.animations.length ; i++){
 				if(this.animations[i].id == node.animation){
 					//VERIFICA SE É ESTA A MATRIX A CHAMAR...
-					this.animations[i].update(this.scene, this.currTime);
+					this.animations[i].update(this.currTime);
 					break;
 				}
 			} 

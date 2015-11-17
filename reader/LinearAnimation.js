@@ -44,12 +44,12 @@ LinearAnimation.prototype.calculaDist = function(){
 * Atualiza as coordenadas da animação
 * @method
 */
-LinearAnimation.prototype.update = function(scene, currentTime){
+LinearAnimation.prototype.update = function(currentTime){
 
   var time = currentTime / 1000;
 
   if (time > this.time)
-    return -1;
+    return;
 
   var disAtual = this.speed * currentTime;
 
