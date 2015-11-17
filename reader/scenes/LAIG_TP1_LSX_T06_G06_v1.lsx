@@ -182,9 +182,9 @@
 <!-- span é o tempo, em segundos, que a animação deve demorar * -->
 <!-- nesta versão do formato LSX, type pode ter o valor “linear” ou "circular" -->
     <animation id="AniLin" span="10" type="linear">
-        <controlpoint xx="0" yy="0" zz="0" />
-        <controlpoint xx="1" yy="0" zz="0" />
-        <controlpoint xx="1" yy="1" zz="0" />
+        <controlpoint xx="0" yy="5" zz="4" />
+        <controlpoint xx="1" yy="2" zz="2" />
+        <controlpoint xx="1" yy="1" zz="1" />
     </animation>
     <animation id="AniRot" span="20" type="circular" center="10 10 10" radius="5" startang="40" rotang="20" />
 </animations>
