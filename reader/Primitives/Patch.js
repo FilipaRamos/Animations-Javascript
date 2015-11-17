@@ -1,3 +1,12 @@
+/**
+* Patch Constructor
+* Constructs a patch with the given U and V divisions, degree and with the fiven control vertexes
+* @param divisionU - divisionU value 
+* @param divisionV - divisionV value
+* @paran degree - degree value
+* @param controlVertex - controlVertex value
+* @constructor
+*/
 function Patch(scene, divisionU, divisionV, degree, controlVertex) {
     
     CGFobject.call(this, scene);
@@ -42,9 +51,14 @@ for(var k=0; k < (this.degree + 1); k++){
     this.surfaces = new CGFnurbsObject(this.scene,getSurfacePoint,this.divisionU,this.divisionV);
 };
 
+
 Patch.prototype = Object.create(CGFobject.prototype);
 Patch.prototype.constructor = Patch;
 
+/**
+ * draw the patch
+ * @constructor
+ */
 Patch.prototype.display = function() 
 {
     this.scene.pushMatrix();
@@ -52,4 +66,8 @@ Patch.prototype.display = function()
     this.scene.popMatrix();
 };
 
+/**
+* updating texture coordinates
+* @constructor
+*/
 Patch.prototype.updateTextCoords = function(s,t){};
