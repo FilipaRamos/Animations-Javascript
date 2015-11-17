@@ -641,14 +641,18 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 			console.log("Texture " + texture_id);
 
 		var animation = node[i].getElementsByTagName('animationref');
-		 
+		var animations = []
 
-		var animation_id = "null";
+		for(var k = 0; k < animation.length ; k++){
+			
+			var animation_id = "null";
 
-		if(animation[0]){
-			animation_id = this.reader.getString(animation[0], 'id');
-
-		console.log("Animation " + animation_id);}
+			if(animation[0]){
+				animation_id = this.reader.getString(animation[0], 'id');
+				animations.push(animation_id);
+			}
+				 
+		}
 
 		var nnodes=node[i].children.length;
 		var transMatrix = mat4.create();
@@ -708,7 +712,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 			}
 		}
 
-		var mynode = new MyNode(node_id, material_id, texture_id, transMatrix, animation_id);
+		var mynode = new MyNode(node_id, material_id, texture_id, transMatrix, animations);
 		this.scene.tree.addNode(mynode);
 
 		
