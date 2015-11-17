@@ -220,7 +220,7 @@
         <MATERIAL id="null" />    
         <TEXTURE id="null" />    
         <DESCENDANTS>
-            <DESCENDANT id="terrain" /> 
+            <DESCENDANT id="planet" /> 
             <DESCENDANT id="battleship" />
           <!-- <DESCENDANT id="mesa" /> 
             <DESCENDANT id="paredeDireita" /> 
@@ -239,12 +239,24 @@
         <TEXTURE id="null" />      
         <TRANSLATION x="0" y="1" z="0" /> 
         <animationref id="AniLin" /> 
-        <animationref id="AniRot" /> 
+        <animationref id="AniRot" />        
+        <SCALE sx="1.5" sy="1.5" sz="1.5" />
         <DESCENDANTS>
             <DESCENDANT id="vehicle" /> 
         </DESCENDANTS>
 
     </NODE>
+
+    <NODE id="planet">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />      
+        <SCALE sx="5" sy="5" sz="5" />
+        <DESCENDANTS>
+            <DESCENDANT id="terrain" /> 
+        </DESCENDANTS>
+
+    </NODE>
+    
 
   <NODE id="mesa">       <!--   defines one intermediate node; may be repeated as necessary -->
 
