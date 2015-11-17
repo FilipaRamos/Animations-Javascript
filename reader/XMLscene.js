@@ -201,8 +201,9 @@ XMLscene.prototype.display = function () {
 XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 	
 	var node = null;
-	var nextTextureID, nextMaterialID, nextAnimationID;
+	var nextTextureID, nextMaterialID;
 	var matrixAnimation = mat4.create();
+	mat4.identity(matrixAnimation);
 
 	//encontrar o node ou leave com esse id e depois chamar a funcao de novo
 
@@ -278,12 +279,12 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 			for(var i = 0; i < this.animations.length ; i++){
 				if(this.animations[i].id == node.animation){
 					//VERIFICA SE É ESTA A MATRIX A CHAMAR...
-					matrixAnimation = this.animations[i].update(this.currTime);
-					console.log("ANIMATION CALLED!!! " + node.animation);
+					 matrixAnimation = this.animations[i].update(this.currTime);
 					break;
 				}
 			} 
 		}
+
 
 		for(var i = 0; i < node.descendants.length; i++){
 			this.pushMatrix();

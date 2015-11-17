@@ -1,3 +1,8 @@
+/**
+* Vehicle Constructor
+* Constructs a vehicle, we decided to do a space ship
+* @constructor
+*/
 function MyVehicle(scene) {
     
     CGFobject.call(this, scene);
@@ -36,6 +41,10 @@ function MyVehicle(scene) {
 MyVehicle.prototype = Object.create(CGFobject.prototype);
 MyVehicle.prototype.constructor = MyVehicle;
 
+/**
+ * draw the vehicle
+ * @constructor
+ */
 MyVehicle.prototype.display = function() 
 {
    this.scene.scale(0.125,0.125,0.25);
@@ -43,8 +52,16 @@ MyVehicle.prototype.display = function()
    this.displayCreator();
 };
 
+/**
+* updating texture coordinates
+* @constructor
+*/
 MyVehicle.prototype.updateTextCoords = function(s,t){};
 
+/**
+* Creates the display, as in, sets the objects in their positions and sizes.
+* @method displayCreator
+*/
 MyVehicle.prototype.displayCreator = function(){
      //Main body
     this.scene.pushMatrix();
@@ -83,7 +100,10 @@ MyVehicle.prototype.displayCreator = function(){
     this.scene.popMatrix();
 }
 
-
+/**
+* Creates the body display, as in, creates the main body of the ship.
+* @method displayBody
+*/
 MyVehicle.prototype.displayBody = function(){
 
     //Main air-plane
@@ -96,6 +116,10 @@ MyVehicle.prototype.displayBody = function(){
     this.naveBack.display();
 }
 
+/**
+* Creates the piece that connects the ship with the sides.
+* @method displayCabel
+*/
 MyVehicle.prototype.displayCabel = function(){
 
     //Main air-conecter

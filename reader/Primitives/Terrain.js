@@ -1,3 +1,10 @@
+/**
+* Plane Constructor
+* Constructs a terrain with a given texture and respective heightmap
+* @param texture - texture map
+* @param heightmap - heightmap 
+* @constructor
+*/
 function Terrain(scene, texture, heightmap) {
     CGFobject.call(this, scene);
     
@@ -22,6 +29,10 @@ function Terrain(scene, texture, heightmap) {
 Terrain.prototype = Object.create(CGFobject.prototype);
 Terrain.prototype.constructor = Terrain;
 
+/**
+ * draw terrain
+ * @constructor
+ */
 Terrain.prototype.display = function() {
     
     this.scene.setActiveShader(this.shader);
@@ -33,5 +44,9 @@ Terrain.prototype.display = function() {
 
 }
 
+/**
+* updating texture coordinates
+* @constructor
+*/
 Terrain.prototype.updateTextCoords = function(s, t) {}
 ;

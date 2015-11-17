@@ -1,3 +1,9 @@
+/**
+* Plane Constructor
+* Constructs a plane with the given divisions with degree = 1.
+* @param divisions - U and V divisions value 
+* @constructor
+*/
 function Plane(scene, divisions){
 
  	CGFobject.call(this,scene);
@@ -18,6 +24,11 @@ function Plane(scene, divisions){
 Plane.prototype = Object.create(CGFobject.prototype);
 Plane.prototype.constructor = Plane;
 
+/**
+ * draw the plane
+ * @constructor
+ */
+
 Plane.prototype.display = function () 
 {
     this.scene.pushMatrix();
@@ -25,4 +36,8 @@ Plane.prototype.display = function ()
 	this.scene.popMatrix();
 };
 
+/**
+* updating texture coordinates
+* @constructor
+*/
 Plane.prototype.updateTextCoords = function(s,t){};
