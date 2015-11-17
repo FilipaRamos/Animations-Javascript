@@ -17,6 +17,8 @@ function LinearAnimation(scene, id, time, ctrlPoints){
     this.speed = this.disT / this.time;
 
     this.time /= 1000;
+
+    this.angle = 0;
    
 }
 
@@ -61,7 +63,14 @@ LinearAnimation.prototype.update = function(scene, currentTime){
 
   k--;
   var progress;
+  var ang = Math.atan((this.ctrlPoints[(k+1)*3] -  this.ctrlPoints[(k*3) ]) / (this.ctrlPoints[(k+1)*3+2] - this.ctrlPoints[(k*3+2) ]));
+  if ((this.ctrlPoints[(k+1)*3+2] - this.ctrlPoints[(k*3+2) ]) < 0)
+    ang += Math.PI;
 
+  if ((this.ctrlPoints[(k+1)*3+2] - this.ctrlPoints[(k*3+2) ]) == 0 && (this.ctrlPoints[(k+1)*3] -  this.ctrlPoints[(k*3) ]) == 0)
+    ang = this.angle;
+
+  this.angle = ang;
   progress = (disAtual - this.distance[k]) / (this.distance[k+1] - this.distance[k]);
 
   var translation = vec3.fromValues(  (this.ctrlPoints[(k+1)*3] -  this.ctrlPoints[(k*3) ])*progress + this.ctrlPoints[(k*3)  ],
@@ -69,5 +78,6 @@ LinearAnimation.prototype.update = function(scene, currentTime){
                                       (this.ctrlPoints[(k+1)*3+2] - this.ctrlPoints[(k*3+2) ])*progress + this.ctrlPoints[(k*3+2)]);
 
   this.scene.translate(translation[0], translation[1], translation[2]);
+  this.scene.rotate(ang, 0, 1, 0);
   
 }
