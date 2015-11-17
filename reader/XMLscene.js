@@ -278,18 +278,27 @@ XMLscene.prototype.displayNode = function (nodeID, textID, materialID) {
 
 
 
-		if(node.animation != "null"){
+	/*	if(node.animation != "null"){
 			for(var i = 0; i < this.animations.length ; i++){
 				for(var j = 0; j < node.animation.length; j++){
 					if(this.animations[i].id === node.animation[j].id){
 						//VERIFICA SE É ESTA A MATRIX A CHAMAR...
+					this.animations[i].update(this.currTime);
+					break;
+				}
+		}
+			} 
+		}
+*/
+		
+		if(node.animation.length != 0){
+			for(var i = 0; i < this.animations.length ; i++){
+					if(this.hasAnimation(this.animations[i].id,node)){
 						this.animations[i].update(this.currTime);
 						break;
-					}
 				}
 			} 
 		}
-
 
 		for(var i = 0; i < node.descendants.length; i++){
 			this.pushMatrix();
@@ -313,4 +322,19 @@ XMLscene.prototype.update = function(currTime) {
     }
     
     this.currTime = (currTime - this.time) /1000;
+}
+
+XMLscene.prototype.hasAnimation = function(animationID, node) {
+	var j;
+	var encontrou = false;
+	for(j = 0; j < node.animation.length; j++){
+		if(animationID === node.animation[j].id){
+			//VERIFICA SE É ESTA A MATRIX A CHAMAR...
+			encontrou = true;
+			break;
+		}
+	}
+
+	return encontrou;
+
 }
