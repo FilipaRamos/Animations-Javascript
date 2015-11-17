@@ -70,6 +70,8 @@ LinearAnimation.prototype.update = function(currentTime){
                                       (this.ctrlPoints[k*3+1]-this.ctrlPoints[(k*3+1)-3])*progress + this.ctrlPoints[(k*3+1)-3],
                                       (this.ctrlPoints[k*3+2]-this.ctrlPoints[(k*3+2)-3])*progress + this.ctrlPoints[(k*3+2)-3]);
 
-  this.scene.translate(translation[0], translation[1], translation[2]);
+  //this.scene.translate(translation[0], translation[1], translation[2]);
+
+  return translation;
   
 }
