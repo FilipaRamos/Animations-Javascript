@@ -61,15 +61,10 @@ LinearAnimation.prototype.update = function(currentTime){
 
   var progress;
 
-<<<<<<< HEAD
   if (k > 0)
     progress = disAtual / (this.distance[k]-this.distance[k-1]);
   else
     progress = disAtual / (this.distance[k+1]-this.distance[k]);
-=======
-  // update dos valores para serem adicionados à nova matrix  
-  var update = vec3.fromValues(incrX, 0, trans_z);
->>>>>>> origin/master
 
   var translation = vec3.fromValues((this.ctrlPoints[k*3]-this.ctrlPoints[(k*3)-3])*progress + this.ctrlPoints[(k*3)-3],
                                       (this.ctrlPoints[k*3+1]-this.ctrlPoints[(k*3+1)-3])*progress + this.ctrlPoints[(k*3+1)-3],
