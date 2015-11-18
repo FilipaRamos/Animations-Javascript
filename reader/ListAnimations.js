@@ -17,7 +17,7 @@ function ListAnimations(scene, animationsID){
  	var soma = 0;
     
     for(var i = 0; i < this.animations.length; i++){
-         soma += this.animations[i].time;
+         soma += this.animations[i].time*1000;
         this.somaTempo.push(soma);
     }
 
@@ -31,8 +31,8 @@ ListAnimations.prototype.constructor = ListAnimations;
 ListAnimations.prototype.getAnimationIndex = function(actTime){
     
     for(var i = 0; i < this.somaTempo.length ; i++){
-        if(actTime > this.somaTempo[i]){
-            return i;
+        if(actTime < this.somaTempo[i]){
+            return i-1;
         }
     }
         
@@ -41,16 +41,21 @@ ListAnimations.prototype.getAnimationIndex = function(actTime){
 }
 
 ListAnimations.prototype.update = function (currTime){
+      if(this.animations.length == 0)
+        return;
       
-    
+      currTime = (currTime % (this.somaTempo[this.somaTempo.length -1])); 
 
      this.index = this.getAnimationIndex(currTime);
-
-     if(this.index != -1 )
-     this.dec = this.somaTempo[this.index-1];
+     this.dec = 0;
+     if(this.index >= 0 )
+      this.dec = this.somaTempo[this.index];
      
-     if(this.index != -1 && this.dec != undefined)
-      this.animations[this.index].update(currTime - this.dec);      
+
+     if(this.index != -1)
+      this.animations[this.index].update(currTime - this.dec);     
+
+
 
 
 }

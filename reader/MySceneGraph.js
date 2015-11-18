@@ -643,16 +643,19 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 		var animation = node[i].getElementsByTagName('animationref');
 		var animations = []
 
-		for(var k = 0; k < animation.length ; k++){
-			
-			var animation_id = "null";
+		var animation = node[i].getElementsByTagName('animationref');
+		  var animations = []
 
-			if(animation[0]){
-				animation_id = this.reader.getString(animation[0], 'id');
-				animations.push(animation_id);
-			}
-				 
-		}
+		  for(var k = 0; k < animation.length ; k++){
+		   
+		   var animation_id = "null";
+
+		   if(animation[k]){
+		    animation_id = this.reader.getString(animation[k], 'id');
+		    animations.push(animation_id);
+		   }
+		     
+		  }
 
 		var nnodes=node[i].children.length;
 		var transMatrix = mat4.create();

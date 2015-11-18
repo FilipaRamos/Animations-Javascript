@@ -64,7 +64,7 @@ XMLscene.prototype.init = function (application) {
 	this.enableTextures(true);
 	this.axis=new CGFaxis(this);
 
-	this.setUpdatePeriod(100);
+	this.setUpdatePeriod(10);
 	
 };
 
@@ -181,7 +181,7 @@ XMLscene.prototype.display = function () {
 		}
 
 	//Draw objects
-	//this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
+	this.displayNode(this.tree.root, this.tree.nodes[0].text, this.tree.nodes[0].material);
 	//this.cyl.display();
 	//this.t.display();
 	//this.plane.display();

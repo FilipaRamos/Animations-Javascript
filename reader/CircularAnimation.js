@@ -22,7 +22,7 @@ CircularAnimation.prototype.constructor = CircularAnimation;
 * @constructor
 */
 CircularAnimation.prototype.update = function(currentTime){
-
+    currentTime/=1000;
     this.scene.translate(parseFloat(this.center[0]), parseFloat(this.center[1]), parseFloat(this.center[2]));
 
 	var time = currentTime / 1000;
