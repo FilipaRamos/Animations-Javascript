@@ -186,7 +186,7 @@
         <controlpoint xx="1" yy="2" zz="2" />
         <controlpoint xx="0" yy="0.5" zz="0" />
     </animation>
-    <animation id="AniRot" span="1" type="circular" center="0 -0.3 0" radius="0.5" startang="40" rotang="20" />
+    <animation id="AniRot" span="1" type="circular" center="0 -0.3 0" radius="0.5" startang="40" rotang="50" />
 </animations>
 
 <!-- INITIALIZE THE LEAVES -->
@@ -267,8 +267,8 @@
                                   <!-- id="null" maintains texture from parent node       -->
                                   <!-- id="clear" clears texture declaration received from parent node      -->
 
-        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
-        <TRANSLATION x="10" y="0" z="10" />
+       <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+       <TRANSLATION x="10" y="0" z="10" />
        <!-- <ROTATION axis="cc" angle="ff" /> -->
        <!-- <SCALE sx="ff" sy="ff" sz="ff" /> -->
 

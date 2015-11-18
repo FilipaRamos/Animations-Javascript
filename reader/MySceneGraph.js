@@ -712,7 +712,7 @@ MySceneGraph.prototype.parseNodes= function(rootElement) {
 			}
 		}
 
-		var mynode = new MyNode(node_id, material_id, texture_id, transMatrix, animations);
+		var mynode = new MyNode(this.scene,node_id, material_id, texture_id, transMatrix, animations);
 		this.scene.tree.addNode(mynode);
 
 		

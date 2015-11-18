@@ -16,7 +16,7 @@ function Plane(scene, divisions){
 		return nurbsSurface.getPoint(u, v);
 	};
 
-	this.surfaces = new CGFnurbsObject(this.scene, getSurfacePoint, this.divisions, this.divisions);	
+	this.surfaces = new CGFnurbsObject(this.scene, getSurfacePoint, this.divisions, this.divisions);
 
 
 };
