@@ -7,8 +7,8 @@ function CircularAnimation(scene, id, time, center, radius, startang, rotang){
     this.center = center;
     this.radius = radius;
     this.startang = startang*Math.PI/180;
-    this.rotang = rotang*Math.PI/180;
-
+    this.rotang = rotang*Math.PI/180; 
+    
 }
 
 CircularAnimation.prototype = Object.create(CGFappearance.prototype);
