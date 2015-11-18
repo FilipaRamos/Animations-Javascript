@@ -53,16 +53,17 @@ LinearAnimation.prototype.update = function(currentTime){
 
   var disAtual = this.speed * currentTime;
 
-
+//Para saber em que segmento de reta estou... K indica indice final em que estas nesse segmento 
   for (var k = 0; k < this.distance.length; k++){
 
     if (this.distance[k] >= disAtual)
       break;
 
   }
-
+//para ir buscar o inicio do segmento 
   k--;
   var progress;
+//X ponto final menos X ponto incial / Z ponto final menos Z ponto inicial -> Y é o eixo de rotação...
   var ang = Math.atan((this.ctrlPoints[(k+1)*3] -  this.ctrlPoints[(k*3) ]) / (this.ctrlPoints[(k+1)*3+2] - this.ctrlPoints[(k*3+2) ]));
   if ((this.ctrlPoints[(k+1)*3+2] - this.ctrlPoints[(k*3+2) ]) < 0)
     ang += Math.PI;

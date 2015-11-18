@@ -181,12 +181,12 @@
 <!-- pode não existir qualquer nó “animation” se a cena não tiver animações -->
 <!-- span é o tempo, em segundos, que a animação deve demorar * -->
 <!-- nesta versão do formato LSX, type pode ter o valor “linear” ou "circular" -->
-    <animation id="AniLin" span="10" type="linear">
-        <controlpoint xx="0" yy="5" zz="4" />
-        <controlpoint xx="1" yy="2" zz="2" />
-        <controlpoint xx="0" yy="0.5" zz="0" />
+    <animation id="AniLin" span="5" type="linear">
+        <controlpoint xx="5" yy="0" zz="0" />
+        <controlpoint xx="0" yy="0" zz="0" />
+        <!--<controlpoint xx="0" yy="0.5" zz="0" />-->
     </animation>
-    <animation id="AniRot" span="1" type="circular" center="0 -0.3 0" radius="0.5" startang="40" rotang="20" />
+    <animation id="AniRot" span="5" type="circular" center="0 0 0" radius="0.5" startang="0" rotang="180" />
 </animations>
 
 <!-- INITIALIZE THE LEAVES -->
@@ -220,7 +220,7 @@
         <MATERIAL id="null" />    
         <TEXTURE id="null" />    
         <DESCENDANTS>
-            <DESCENDANT id="terrain" /> 
+            <DESCENDANT id="planet" /> 
             <DESCENDANT id="battleship" />
           <!-- <DESCENDANT id="mesa" /> 
             <DESCENDANT id="paredeDireita" /> 
@@ -239,12 +239,24 @@
         <TEXTURE id="null" />      
         <TRANSLATION x="0" y="1" z="0" /> 
         <animationref id="AniLin" /> 
-        <animationref id="AniRot" /> 
+        <animationref id="AniRot" />        
+        <SCALE sx="1.5" sy="1.5" sz="1.5" />
         <DESCENDANTS>
             <DESCENDANT id="vehicle" /> 
         </DESCENDANTS>
 
     </NODE>
+
+    <NODE id="planet">      
+        <MATERIAL id="null" />    
+        <TEXTURE id="null" />      
+        <SCALE sx="1" sy="1" sz="1" />
+        <DESCENDANTS>
+            <DESCENDANT id="terrain" /> 
+        </DESCENDANTS>
+
+    </NODE>
+    
 
   <NODE id="mesa">       <!--   defines one intermediate node; may be repeated as necessary -->
 
@@ -255,8 +267,8 @@
                                   <!-- id="null" maintains texture from parent node       -->
                                   <!-- id="clear" clears texture declaration received from parent node      -->
 
-        <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
-        <TRANSLATION x="10" y="0" z="10" />
+       <!-- geom. transf. are optional and may be repeated, in any order, as necessary -->
+       <TRANSLATION x="10" y="0" z="10" />
        <!-- <ROTATION axis="cc" angle="ff" /> -->
        <!-- <SCALE sx="ff" sy="ff" sz="ff" /> -->
 
